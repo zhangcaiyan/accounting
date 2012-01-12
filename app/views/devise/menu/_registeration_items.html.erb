@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+  <li>
+  <%= link_to '编辑用户信息', edit_user_registration_path, :html => {:class => "rp_font update_password"} %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('注册', new_user_registration_path, :class => "register")  %>
+  </li>
+<% end %>
+

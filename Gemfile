@@ -6,11 +6,13 @@ gem 'rails', '3.0.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'mysql2'
-gem 'meta_search', "~> 1.0.5"
-gem "will_paginate", "~> 3.0.pre2"
+gem 'mysql2', '< 0.3'
+gem 'meta_search'
+gem "will_paginate"
 gem 'rmagick'
 gem 'paperclip'
+gem 'devise'
+gem 'i18n_generators'
 
 group :development, :test do
   gem 'ruby-debug19', :require => "ruby-debug"

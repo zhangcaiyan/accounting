@@ -1,0 +1,61 @@
+<%= title "登陆" %>
+
+<div id="bottom_body">
+  <div class="login_form">
+    <span id="notice" class="success_notice">
+      <%= notice %>
+    </span>
+    <span class="error_messages error_notice">
+      <ul>
+        <li><%= alert %></li>
+      </ul> 
+    </span>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <table>
+        <tr>
+          <td><%= f.label :email %>:</td>
+          <td><%= f.text_field :email, :value => "请输入用户名或email", :class => "login_input" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :password %>:</td>
+          <td> <%= f.password_field :password, :class => "login_input" %></td>
+        </tr>
+        <% if devise_mapping.rememberable? -%>
+        <tr>
+          <td class="remember"><a href="#" class="un_underline_link"><%= f.label :remember_me %>:</a></td>
+          <td style="text-align:left;"><%= f.check_box :remember_me %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td style="text-align:right">
+            <%= f.submit "登陆", :class => "submit" %>
+          </td>
+        </tr> 
+      </table>
+    <% end %>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+    jQuery("input[name='user[email]']").attr("class", "qianse_text login_input")
+    username_value = jQuery("input[name='user[email]']").val()
+    jQuery("input[name='user[email]']").bind("focus", function(){
+      if(jQuery(this).val()==username_value){
+        jQuery(this).attr("class", "login_input")
+        jQuery(this).attr("value", "")
+      }
+    })
+
+    jQuery("input[name='user[email]']").bind("blur", function(){
+      if (jQuery(this).attr("value")==''){
+        jQuery(this).attr("value", username_value)
+        jQuery(this).attr("class", "qianse_text login_input")
+      }
+    })
+
+    jQuery(".login").addClass("current")
+  })
+</script>

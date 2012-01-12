@@ -1,0 +1,20 @@
+zh-CN:
+  activerecord:
+    models:
+      user: 用户  #g
+
+    attributes:
+      user:
+        email: 电子邮件  #g
+        encrypted_password: 加密密码  #g
+        reset_password_token: 重置密码  #g
+        reset_password_sent_at: 重新设置密码被送在  #g
+        remember_created_at: 记住创造在  #g
+        current_sign_in_at: 当前登录时间  #g
+        last_sign_in_at: 最后登录时间  #g
+        current_sign_in_ip: 当前登录ip  #g
+        last_sign_in_ip: 最后登录ip  #g
+        password: 密码
+        remember_me: 记住密码
+        password_confirmation: 密码确认
+        current_password: 当前密码

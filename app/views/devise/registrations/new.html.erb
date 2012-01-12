@@ -1,0 +1,120 @@
+<%= title "注册" %>
+
+<div id="bottom_body">
+  <div class="login_form">
+
+      <%= devise_error_messages! %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <table>
+        <tr>
+          <td><%= f.label :email %>:</td>
+          <td><%= f.email_field :email, :class => "login_input" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>用户名:</td>
+          <td><input type="TEXT" name="username" class="login_input" /></td>
+          <td></td> 
+        </tr>
+        <tr>
+          <td><%= f.label :password %>:</td>
+          <td><%= f.password_field :password, :class => "login_input" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= f.label :password_confirmation %>:</td>
+          <td><%= f.password_field :password_confirmation, :class => "login_input" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td style="text-align:right">
+            <%= f.submit "注册", :class => "submit" %>
+          </td>
+        </tr> 
+      </table>
+    <% end %>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+    jQuery("input[name='user[email]']").bind("blur", function(){
+      email = jQuery(this).val()
+      regexp = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
+      notice_area = jQuery(this).parent().next()
+      notice_area.attr("class", "")
+      if(email == ""){
+        notice_area.text("邮箱不能为空").addClass("error_notice") 
+      }else if(email.match(regexp)==null){
+        notice_area.text("邮箱格式错误").addClass("error_notice") 
+      }else{
+        <!--ajax进入后台判断-->
+        notice_area.text("邮箱可用").addClass("success_notice")
+      }
+    })
+
+
+
+    jQuery("input[name='user[username]']").bind("focus", function(){
+      jQuery(this).parent().next().text("用户名长度不能超过15个字符").attr("class", "success_notice")
+    })
+
+    jQuery("input[name='user[username]']").bind("blur", function(){
+      username = jQuery(this).val()
+      notice_area = jQuery(this).parent().next()
+      notice_area.attr("class", "")
+      if(username == ""){
+        notice_area.text("用户名不能为空").addClass("error_notice") 
+      }else if(username.length > 15){
+        notice_area.text("用户名长度不能超过15个字符").addClass("error_notice") 
+      }else{
+        <!--ajax进入后台判断-->
+        notice_area.text("用户名可用").addClass("success_notice")
+      }
+    })
+
+
+
+    jQuery("input[name='user[password]']").bind("focus", function(){
+      jQuery(this).parent().next().text("密码长度不能多余20个字符").attr("class", "success_notice")
+    })
+
+    jQuery("input[name='user[password]']").bind("blur", function(){
+      password = jQuery(this).val()
+      notice_area = jQuery(this).parent().next()
+      notice_area.attr("class", "")
+      if(password == ""){
+        notice_area.text("密码不能为空").addClass("error_notice") 
+      }else if(password.length < 20){
+        notice_area.text("密码可用").addClass("success_notice")
+        if(password == jQuery("input[name='user[password_confirmation]']").val()){
+           jQuery("input[name='user[password_confirmation]']").parent().next().text("两次输入的密码一致").attr("class", "success_notice")
+        }
+      }else{
+        notice_area.text("密码长度不能多余20个字符").addClass("error_notice")
+      }
+    })
+
+    jQuery("input[name='user[password_confirmation]']").bind("blur", function(){
+      password_confirm = jQuery(this).val()
+      notice_area = jQuery(this).parent().next()
+      if(password_confirm == ""){
+        notice_area.text("密码确认不能为空").attr("class", "error_notice") 
+      }
+      else if(password_confirm != jQuery("input[name='user[password]']").val()){
+        notice_area.text("两次输入的密码不一致").attr("class", "error_notice")
+      }
+      else{
+        notice_area.text("两次输入的密码一致").attr("class", "success_notice") 
+      }
+
+    })
+
+    jQuery(".register").addClass("current")
+
+
+  })
+</script>
