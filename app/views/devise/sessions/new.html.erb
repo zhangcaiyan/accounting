@@ -13,8 +13,8 @@
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       <table>
         <tr>
-          <td><%= f.label :email %>:</td>
-          <td><%= f.text_field :email, :value => "请输入用户名或email", :class => "login_input" %></td>
+          <td><%= f.label :login %>:</td>
+          <td><%= f.text_field :login, :value => "请输入用户名或email", :class => "login_input" %></td>
         </tr>
         <tr>
           <td><%= f.label :password %>:</td>
@@ -40,16 +40,16 @@
 
 <script type="text/javascript">
   jQuery(document).ready(function(){
-    jQuery("input[name='user[email]']").attr("class", "qianse_text login_input")
-    username_value = jQuery("input[name='user[email]']").val()
-    jQuery("input[name='user[email]']").bind("focus", function(){
+    jQuery("input[name='user[login]']").attr("class", "qianse_text login_input")
+    username_value = jQuery("input[name='user[login]']").val()
+    jQuery("input[name='user[login]']").bind("focus", function(){
       if(jQuery(this).val()==username_value){
         jQuery(this).attr("class", "login_input")
         jQuery(this).attr("value", "")
       }
     })
 
-    jQuery("input[name='user[email]']").bind("blur", function(){
+    jQuery("input[name='user[login]']").bind("blur", function(){
       if (jQuery(this).attr("value")==''){
         jQuery(this).attr("value", username_value)
         jQuery(this).attr("class", "qianse_text login_input")

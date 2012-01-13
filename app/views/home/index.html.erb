@@ -1,7 +1,122 @@
-<h1>首页</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<% title "首页" %>
 
+<div id="bottom_body">
+  <div id="all_zhichu_container"></div>
+  <div id="month_zhichu_container"></div>      
+</div>
 
 <script type="text/javascript">
   jQuery(".home").addClass("current")
 </script>
+
+<script type="text/javascript">
+
+  var chart;
+  jQuery(document).ready(function() {
+    chart = new Highcharts.Chart({
+    chart: {
+      renderTo: 'all_zhichu_container',
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false
+    },
+    title: {
+      text: '全部支出饼图'
+    },
+    tooltip: {
+      formatter: function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+      }
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          color: '#000000',
+          connectorColor: '#000000',
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+          }
+        }
+      }
+    },
+    series: [{
+      type: 'pie',
+      name: 'Browser share',
+      data: [
+        ['食物',   45.0],
+        ['租房',       26.8],
+        {
+          name: '家具',    
+          y: 12.8,
+          sliced: true,
+          selected: true
+        },
+        ['衣服',    8.5],
+        ['购物',     6.2],
+        ['其他',   0.7]
+      ]
+    }]
+  });
+});
+              
+</script>
+
+<script type="text/javascript">
+
+  var chart;
+  jQuery(document).ready(function() {
+    chart = new Highcharts.Chart({
+    chart: {
+      renderTo: 'month_zhichu_container',
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false
+    },
+    title: {
+      text: '当月支出饼图'
+    },
+    tooltip: {
+      formatter: function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+      }
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          color: '#000000',
+          connectorColor: '#000000',
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+          }
+        }
+      }
+    },
+    series: [{
+      type: 'pie',
+      name: 'Browser share',
+      data: [
+        ['食物',   45.0],
+        ['租房',       26.8],
+        {
+          name: '家具',    
+          y: 12.8,
+          sliced: true,
+          selected: true
+        },
+        ['衣服',    8.5],
+        ['购物',     6.2],
+        ['其他',   0.7]
+      ]
+    }]
+  });
+});
+              
+</script>
+
+

@@ -408,8 +408,7 @@ body#main .reset_password{
 }
 
 .login_form{
-  margin: 100px auto; 
-  width: 40%;  
+  margin: 100px auto auto 30%; 
 }
 
 .error_messages ul li{
@@ -480,8 +479,7 @@ body#main .reset_password{
 }
 
 .edit_user_form{
-  margin: 10px auto auto 100px;; 
-  width: 40%;  
+  margin: 10px auto auto 10%;
 }
 
 .edit_user_form p{

@@ -37,6 +37,8 @@ Devise.setup do |config|
   # to authenticate or find a user. Default is :email.
   config.case_insensitive_keys = [ :email ]
 
+  config.authentication_keys = [ :login ]
+
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
@@ -103,7 +105,6 @@ Devise.setup do |config|
   # ==> Configuration for :validatable
   # Range for password length. Default is 6..128.
   # config.password_length = 6..128
-
   # Email regex used to validate email formats. It simply asserts that
   # an one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
