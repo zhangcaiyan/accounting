@@ -13,6 +13,7 @@ gem 'rmagick'
 gem 'paperclip'
 gem 'devise'
 gem 'i18n_generators'
+gem 'permanent_records'
 
 group :development, :test do
   gem 'ruby-debug19', :require => "ruby-debug"

@@ -3,7 +3,6 @@
 <div id="bottom_body">
   <div class="login_form">
     <span id="notice" class="success_notice">
-      <%= notice %>
     </span>
     <span class="error_messages error_notice">
       <ul>
@@ -22,7 +21,11 @@
         </tr>
         <% if devise_mapping.rememberable? -%>
         <tr>
-          <td class="remember"><a href="#" class="un_underline_link"><%= f.label :remember_me %>:</a></td>
+          <td class="remember">
+            <a href="#" class="un_underline_link">
+              <%= t 'activerecord.attributes.user.remember_me' %>:
+            </a>
+          </td>
           <td style="text-align:left;"><%= f.check_box :remember_me %></td>
         </tr>
         <% end %>
@@ -53,6 +56,15 @@
       if (jQuery(this).attr("value")==''){
         jQuery(this).attr("value", username_value)
         jQuery(this).attr("class", "qianse_text login_input")
+      }
+    })
+
+    jQuery(".remember").bind("click", function(){
+      is_checked = jQuery("input[name='user[remember_me]']").attr("checked")
+      if (is_checked){
+        jQuery("input[name='user[remember_me]']").attr("checked", false)
+      }else{
+        jQuery("input[name='user[remember_me]']").attr("checked", true) 
       }
     })
 
