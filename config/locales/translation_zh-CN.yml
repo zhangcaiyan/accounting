@@ -20,3 +20,4 @@ zh-CN:
         current_password: 当前密码
         login: 帐号
         username:  用户名
+        confirmation_token: 激活码

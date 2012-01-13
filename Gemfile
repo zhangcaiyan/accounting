@@ -11,7 +11,7 @@ gem 'meta_search'
 gem "will_paginate"
 gem 'rmagick'
 gem 'paperclip'
-gem 'devise'
+gem 'devise', '~> 1.5.3'
 gem 'i18n_generators'
 gem 'permanent_records'
 
