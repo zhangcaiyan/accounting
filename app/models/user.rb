@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
   
-  validates :username, :length => {:in => 1..20}
-  #validates :password, :length => {:in => 4..20}
+  validates :username, :length => {:in => 1..20}, :uniqueness => true
+  validates :password, :length => {:in => 1..20}
   validates :email, :format => {
     :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/
   }, :uniqueness => true

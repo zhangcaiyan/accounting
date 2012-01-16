@@ -13,7 +13,7 @@ zh-CN:
     failure:
       already_authenticated: '您已经登陆了.'
       unauthenticated: '您需要先登陆或注册.'
-      unconfirmed: '您必须先激活您的账户.'
+      unconfirmed: '您必须先去邮箱激活您的账户.'
       locked: '您的帐户已锁定.'
       invalid: '账户或密码有误.'
       invalid_token: '验证信息不合法.'
