@@ -478,6 +478,12 @@ body#main .reset_password{
   margin-right: 15px;
 }
 
+#test_account{
+  font-size: 13px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
 .edit_user_form{
   margin: 10px auto auto 10%;
 }
