@@ -19,4 +19,13 @@ module ApplicationHelper
       stylesheet_link_tag *css
     end
   end
+
+  def cn(model, attribute=nil)
+    if attribute.present?
+      t "activerecord.attributes.#{model}.#{attribute}"
+    else
+      t "activerecord.models.#{model}"
+    end
+  end
+
 end

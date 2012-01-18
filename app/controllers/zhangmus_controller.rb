@@ -5,7 +5,8 @@ class ZhangmusController < ApplicationController
   # GET /zhangmus.xml
   def index
     @zhangmu = Zhangmu.new
-    @zhangmus = Zhangmu.all
+    @search = Zhangmu.search(params[:search])
+    @zhangmus = @search.page(params[:page]).order('created_at DESC').per_page(params[:per_page] || 20)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -50,6 +51,8 @@ class ZhangmusController < ApplicationController
         format.html { redirect_to(zhangmus_path, :notice => '新建一条帐目.') }
         format.xml  { render :xml => @zhangmu, :status => :created, :location => zhangmus_path }
       else
+        @search = Zhangmu.search(params[:search])
+        @zhangmus = @search.page(params[:page]).order('created_at DESC').per_page(params[:per_page] || 20)
         format.html { render :action => "index" }
         format.xml  { render :xml => @zhangmu.errors, :status => :unprocessable_entity }
       end
@@ -83,4 +86,5 @@ class ZhangmusController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end

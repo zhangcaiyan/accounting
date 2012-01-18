@@ -30,6 +30,7 @@ module Accounting
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = 'zh-CN'
     config.active_record.default_timezone = :local
+    config.time_zone = "Beijing"  # 将读取出来的时间自动转换为本地时间
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
