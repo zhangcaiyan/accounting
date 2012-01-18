@@ -14,6 +14,8 @@ gem 'paperclip'
 gem 'devise', '~> 1.5.3'
 gem 'i18n_generators'
 gem 'permanent_records'
+gem 'symbolize', :require => "symbolize/active_record"
+
 
 group :development, :test do
   gem 'ruby-debug19', :require => "ruby-debug"

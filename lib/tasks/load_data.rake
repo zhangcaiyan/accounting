@@ -2,7 +2,7 @@
 
 task :load_data => :environment do  # 添充数据 
 
-  User.delete_all
+  User.destroy_all
 
   user=User.create(:email => "zhangcaiyanbeyond@gmail.com", 
                    :username => "zhangcaiyan", 

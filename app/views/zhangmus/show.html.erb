@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @zhangmu.title %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @zhangmu.date %>
+</p>
+
+<p>
+  <b>Fee:</b>
+  <%= @zhangmu.fee %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @zhangmu.desc %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @zhangmu.user_id %>
+</p>
+
+<p>
+  <b>People:</b>
+  <%= @zhangmu.people_id %>
+</p>
+
+<p>
+  <b>Zhangben:</b>
+  <%= @zhangmu.zhangben_id %>
+</p>
+
+<p>
+  <b>Fenlei:</b>
+  <%= @zhangmu.fenlei_id %>
+</p>
+
+<p>
+  <b>Shouzhi:</b>
+  <%= @zhangmu.shouzhi %>
+</p>
+
+
+<%= link_to 'Edit', edit_zhangmu_path(@zhangmu) %> |
+<%= link_to 'Back', zhangmus_path %>

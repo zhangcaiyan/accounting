@@ -2,6 +2,10 @@ zh-CN:
   activerecord:
     models:
       user: 用户  #g
+      people: 人员
+      zhangben: 账本
+      fenlei: 分类
+      zhangmu: 账目
 
     attributes:
       user:
@@ -21,3 +25,31 @@ zh-CN:
         login: 帐号
         username:  用户名
         confirmation_token: 激活码
+
+      people:
+        name: 名称
+        desc: 描述
+
+      zhangben:
+        name: 名称
+        desc: 描述
+
+      fenlei:
+        name: 名称
+        desc: 描述
+
+      zhangmu:
+        title: 标题
+        date: 日期
+        fee:  金额 
+        desc: 描述
+        people_id: 人员
+        zhangben_id: 账本
+        fenlei_id: 分类
+        shouzhi: 收支情况
+        enums:
+          shouzhi:
+            shouru: 收入
+            zhichu: 支出
+
+
