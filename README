@@ -10,9 +10,6 @@ config.action_mailer.default_url_options = { :host => 'localhost:3000' }  设置
 
 
 
-
-
-
 改进：
 
 views/zhangmus/_form.html.erb表单太乱，也许可以简洁一些
