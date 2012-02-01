@@ -1,42 +1,52 @@
-<%= form_for(@zhangmu) do |f| %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <table>
-    <tr>
-      <td class="label"><span class="import">*</span><%= f.label :shouzhi %>:</td>
-      <td>
-        <%= f.select "shouzhi", options_for_select(Zhangmu.get_shouzhi_values, params[:zhangmu].try(:[], :shouzhi)), {}, {:class => "select"} %>
-      </td>
-      <td class="label"><%= f.label :title %>:</td>
-      <td><%= f.text_field :title, :value => params[:zhangmu].try(:[], :title), :class => "text" %></td>
-      <td class="label"><span class="import">*</span><%= f.label :date %>:</td>
-      <td><%= f.text_field :date, :value => params[:zhangmu].try(:[], :date) || Date.current, :onclick => "WdatePicker()", :class => "text" %></td>
-    </tr>
-    <tr>
-      <td class="label"><%= f.label :zhangben_id %>:</td>
-      <td>
-        <%= f.select "zhangben_id",  options_from_collection_for_select(current_user.zhangbens, :id, :name, params[:zhangmu].try(:[], :zhangben_id)), {}, {:class => "select"} %>
-      </td>
-      <td class="label"><span class="import">*</span><%= f.label :fee %>:</td>
-      <td><%= f.text_field :fee, :value => params[:zhangmu].try(:[], :fee), :class => "text" %></td>
-      <td class="label"><%= f.label :people_id %>:</td>
-      <td>
-        <%= f.select "people_id",  options_from_collection_for_select(current_user.peoples, :id, :name, params[:zhangmu].try(:[], :people_id)), {}, {:class => "select"} %>
-      </td>
-    </tr>
-  
-    <tr>
-      <td class="label"><%= f.label :fenlei_id %>:</td>
-      <td>
-        <%= f.select "fenlei_id",  options_from_collection_for_select(current_user.fenleis, :id, :name, params[:zhangmu].try(:[], :fenlei_id)), {}, {:class => "select"} %>
-      </td>
-      <td class="label"><%= f.label :desc %>:</td>
-      <td><%= f.text_area :desc, :value => params[:zhangmu].try(:[], :desc), :class => "textarea" %></td>
-      <td></td><td><%= f.submit '保存', :class => "submit" %></td>
-    </tr>
-  </table>
-<% end %>
+<div id="form">
+  <div class="error_messages error_notice">
+    <% if @zhangmu.errors.any? %>
+      <ul>
+        <% @zhangmu.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul> 
+    <% end %>
+  </div>
 
+  <%= form_for(@zhangmu) do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <table>
+      <tr>
+        <td class="label"><span class="import">*</span><%= f.label :shouzhi %>:</td>
+        <td>
+          <%= f.select "shouzhi", options_for_select(Zhangmu.get_shouzhi_values, @zhangmu.shouzhi), {}, {:class => "select"} %>
+        </td>
+        <td class="label"><%= f.label :title %>:</td>
+        <td><%= f.text_field :title, :class => "text" %></td>
+        <td class="label"><span class="import">*</span><%= f.label :date %>:</td>
+        <td><%= f.text_field :date, :value => @zhangmu.date || Date.current, :onclick => "WdatePicker()", :class => "text" %></td>
+      </tr>
+      <tr>
+        <td class="label"><%= f.label :zhangben_id %>:</td>
+        <td>
+          <%= f.select "zhangben_id",  options_from_collection_for_select(current_user.zhangbens, :id, :name, @zhangmu.zhangben_id), {}, {:class => "select"} %>
+        </td>
+        <td class="label"><span class="import">*</span><%= f.label :fee %>:</td>
+        <td><%= f.text_field :fee, :class => "text" %></td>
+        <td class="label"><%= f.label :people_id %>:</td>
+        <td>
+          <%= f.select "people_id",  options_from_collection_for_select(current_user.peoples, :id, :name, @zhangmu.people_id), {}, {:class => "select"} %>
+        </td>
+      </tr>
 
+      <tr>
+        <td class="label"><%= f.label :fenlei_id %>:</td>
+        <td>
+          <%= f.select "fenlei_id",  options_from_collection_for_select(current_user.fenleis, :id, :name, @zhangmu.fenlei_id), {}, {:class => "select"} %>
+        </td>
+        <td class="label"><%= f.label :desc %>:</td>
+        <td><%= f.text_area :desc, :class => "textarea" %></td>
+        <td></td><td><%= f.submit '保存', :class => "submit" %></td>
+      </tr>
+    </table>
+  <% end %>
+</div>
 
 
 

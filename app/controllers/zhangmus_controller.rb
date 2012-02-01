@@ -1,18 +1,6 @@
 # coding: utf-8
 
 class ZhangmusController < ApplicationController
-  # GET /zhangmus
-  # GET /zhangmus.xml
-  def index
-    @zhangmu = Zhangmu.new
-    @search = Zhangmu.search(params[:search])
-    @zhangmus = @search.page(params[:page]).order('created_at DESC').per_page(params[:per_page] || 20)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @zhangmus }
-    end
-  end
 
   # GET /zhangmus/1
   # GET /zhangmus/1.xml
@@ -28,35 +16,26 @@ class ZhangmusController < ApplicationController
   # GET /zhangmus/new
   # GET /zhangmus/new.xml
   def new
-    @zhangmu = Zhangmu.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @zhangmu }
-    end
+    @zhangmu = Zhangmu.new(params[:zhangmu])
+    @search = Zhangmu.search(params[:search])
+    @zhangmus = @search.page(params[:page]).order('created_at DESC').per_page(params[:per_page] || 20)
   end
 
   # GET /zhangmus/1/edit
   def edit
     @zhangmu = Zhangmu.find(params[:id])
-    render "edit", :layout => false
   end
 
   # POST /zhangmus
   # POST /zhangmus.xml
   def create
     @zhangmu = Zhangmu.new(params[:zhangmu])
-
-    respond_to do |format|
-      if @zhangmu.save
-        format.html { redirect_to(zhangmus_path(), :notice => '新建一条帐目.') }
-        format.xml  { render :xml => @zhangmu, :status => :created, :location => zhangmus_path }
-      else
-        @search = Zhangmu.search(params[:search])
-        @zhangmus = @search.page(params[:page]).order('created_at DESC').per_page(params[:per_page] || 20)
-        format.html { render :action => "index" }
-        format.xml  { render :xml => @zhangmu.errors, :status => :unprocessable_entity }
-      end
+    if @zhangmu.save
+      redirect_to new_zhangmu_path(:zhangmu => params[:zhangmu]), :notice => '新建一条帐目'
+    else
+      @search = Zhangmu.search(params[:search])
+      @zhangmus = @search.page(params[:page]).order('created_at DESC').per_page(params[:per_page] || 20)
+      render "new"
     end
   end
 
@@ -64,14 +43,10 @@ class ZhangmusController < ApplicationController
   # PUT /zhangmus/1.xml
   def update
     @zhangmu = Zhangmu.find(params[:id])
-    respond_to do |format|
-      if @zhangmu.update_attributes(params[:zhangmu])
-        format.html { redirect_to(zhangmus_path, :notice => '修改帐目成功.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @zhangmu.errors, :status => :unprocessable_entity }
-      end
+    if @zhangmu.update_attributes(params[:zhangmu])
+      redirect_to(new_zhangmu_path, :notice => '修改帐目成功')
+    else
+      redirect_to new_zhangmu_path 
     end
   end
 
@@ -80,11 +55,7 @@ class ZhangmusController < ApplicationController
   def destroy
     @zhangmu = Zhangmu.find(params[:id])
     @zhangmu.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(zhangmus_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(new_zhangmu_path)
   end
 
 end

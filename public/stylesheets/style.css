@@ -509,7 +509,7 @@ body#main .reset_password{
   margin: 2px 0 0;
 }
 
-.form input[type='text']{
+.form input{
   width: 180px;
 }
 
