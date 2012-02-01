@@ -39,6 +39,7 @@ class ZhangmusController < ApplicationController
   # GET /zhangmus/1/edit
   def edit
     @zhangmu = Zhangmu.find(params[:id])
+    render "edit", :layout => false
   end
 
   # POST /zhangmus
@@ -48,7 +49,7 @@ class ZhangmusController < ApplicationController
 
     respond_to do |format|
       if @zhangmu.save
-        format.html { redirect_to(zhangmus_path, :notice => '新建一条帐目.') }
+        format.html { redirect_to(zhangmus_path(), :notice => '新建一条帐目.') }
         format.xml  { render :xml => @zhangmu, :status => :created, :location => zhangmus_path }
       else
         @search = Zhangmu.search(params[:search])
@@ -63,10 +64,9 @@ class ZhangmusController < ApplicationController
   # PUT /zhangmus/1.xml
   def update
     @zhangmu = Zhangmu.find(params[:id])
-
     respond_to do |format|
       if @zhangmu.update_attributes(params[:zhangmu])
-        format.html { redirect_to(@zhangmu, :notice => 'Zhangmu was successfully updated.') }
+        format.html { redirect_to(zhangmus_path, :notice => '修改帐目成功.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -113,7 +113,7 @@
           <td class="cta"><%= zhangmu.fenlei.name %>|<%= zhangmu.title %>|<%= zhangmu.shouzhi_text %></td>
           <td class="fee"><%= zhangmu.fee %></td>
           <td class="option">
-            <%= link_to "编辑", edit_zhangmu_path(zhangmu) %>
+            <%= link_to "编辑", "#", :class => "edit", :value => zhangmu.id %>
             <%= link_to "删除", zhangmu, :confirm => '确定删除这条帐目吗?', :method => :delete %>
           </td>
         </tr>
@@ -140,5 +140,11 @@
     Boxy.confirm("确定导出帐目吗", function() { });
     return false;
   });
+
+  jQuery(".edit").click(function(){
+    zhangmu_id = jQuery(this).attr("value")
+    path = "zhangmus/"+zhangmu_id+"/edit"
+    Boxy.load(path , {title: '编辑', modal: true})
+  })
 
 </script>
