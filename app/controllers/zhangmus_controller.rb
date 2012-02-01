@@ -17,7 +17,7 @@ class ZhangmusController < ApplicationController
   # GET /zhangmus/new.xml
   def new
     @zhangmu = Zhangmu.new(params[:zhangmu])
-    @search = Zhangmu.search(params[:search])
+    @search = current_user.zhangmus.search(params[:search])
     @zhangmus = @search.page(params[:page]).order('created_at DESC').per_page(params[:per_page] || 20)
   end
 

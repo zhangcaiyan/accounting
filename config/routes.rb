@@ -3,6 +3,8 @@ Accounting::Application.routes.draw do
 
   resources :zhangmus
 
+  resources :zhangbens
+
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' } 
 
   root :to => "home#index"
@@ -12,6 +14,7 @@ Accounting::Application.routes.draw do
   get 'verify_username_exist' => "users#verify_username_exist"
 
   get 'verify_email_exist' => "users#verify_email_exist"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

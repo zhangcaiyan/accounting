@@ -25,7 +25,7 @@
       <tr>
         <td class="label"><%= f.label :zhangben_id %>:</td>
         <td>
-          <%= f.select "zhangben_id",  options_from_collection_for_select(current_user.zhangbens, :id, :name, @zhangmu.zhangben_id), {}, {:class => "select"} %>
+          <%= f.select "zhangben_id",  options_from_collection_for_select(current_user.zhangbens, :id, :name, @zhangmu.zhangben_id), {}, {:class => "select", :id => "zhangben"} %>
         </td>
         <td class="label"><span class="import">*</span><%= f.label :fee %>:</td>
         <td><%= f.text_field :fee, :class => "text" %></td>
@@ -38,7 +38,7 @@
       <tr>
         <td class="label"><%= f.label :fenlei_id %>:</td>
         <td>
-          <%= f.select "fenlei_id",  options_from_collection_for_select(current_user.fenleis, :id, :name, @zhangmu.fenlei_id), {}, {:class => "select"} %>
+          <%= f.select "fenlei_id",  options_from_collection_for_select(current_user.zhangbens.first.fenleis, :id, :name, @zhangmu.fenlei_id), {}, {:class => "select", :id => "fenlei"} %>
         </td>
         <td class="label"><%= f.label :desc %>:</td>
         <td><%= f.text_area :desc, :class => "textarea" %></td>
@@ -48,6 +48,18 @@
   <% end %>
 </div>
 
-
+<script type="text/javascript">
+  jQuery(function(){
+    jQuery("#zhangben option").click(function(){
+      path = "/zhangbens/" + jQuery(this).val()
+      jQuery.get(path, function(fenleis){
+        jQuery("#fenlei").html("")
+        fenleis.each(function(fenlei){
+          jQuery("#fenlei").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
+        }) 
+      })
+    }) 
+  })
+</script>
 
 

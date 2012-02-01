@@ -1,5 +1,5 @@
 <div style="display:none;" id="search">
-  <%= form_for(@search, :path => zhangmus_path, :method => :get, :html => {:class => "form"}) do |f| %>
+  <%= form_for(@search, :url => new_zhangmu_path, :method => :get, :html => {:class => "form"}) do |f| %>
     <table>
       <tr>
         <td><%= cn "zhangmu", "title" %>:</td>
@@ -32,13 +32,17 @@
       <tr>
         <td><%= cn "zhangmu", "zhangben_id" %>:</td>
         <td>
-          <%= f.select "zhangben_id_eq",  options_from_collection_for_select(current_user.zhangbens, :id, :name, params[:search].try(:[], :zhangben_id_eq)), {:include_blank => true} %>
+          <%= f.select "zhangben_id_eq",  options_from_collection_for_select(current_user.zhangbens, :id, :name, params[:search].try(:[], :zhangben_id_eq)), {:include_blank => true}, :id => "search_zhangben" %>
         </td>
       </tr>
       <tr>
         <td><%= cn "zhangmu", "fenlei_id" %>:</td>
         <td>
-          <%= f.select "fenlei_id_eq",  options_from_collection_for_select(current_user.fenleis, :id, :name, params[:search].try(:[], :fenlei_id_eq)), {:include_blank => true} %>
+          <% if id = params[:search].try(:[], :zhangben_id_eq) %>
+            <%= f.select "fenlei_id_eq",  options_from_collection_for_select(Zhangben.find(id).fenleis, :id, :name, params[:search].try(:[], :fenlei_id_eq)), {:include_blank => true}, :id => "search_fenlei" %>
+          <% else %>
+            <%= f.select "fenlei_id_eq",  [], {:include_blank => true}, :id => "search_fenlei" %>
+          <% end %>
         </td>
       </tr>
       <tr>
@@ -55,3 +59,19 @@
     </table>
   <% end %>
 </div>
+
+
+<script type="text/javascript">
+  jQuery(function(){
+    jQuery("#search_zhangben option").click(function(){
+      path = "/zhangbens/" + jQuery(this).val()
+      jQuery.get(path, function(fenleis){
+        jQuery("#search_fenlei").html("")
+        jQuery("#search_fenlei").append("<option value=''></option>")
+        fenleis.each(function(fenlei){
+          jQuery("#search_fenlei").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
+        }) 
+      })
+    }) 
+  })
+</script>
