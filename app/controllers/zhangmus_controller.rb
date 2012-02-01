@@ -46,7 +46,7 @@ class ZhangmusController < ApplicationController
     if @zhangmu.update_attributes(params[:zhangmu])
       redirect_to(new_zhangmu_path, :notice => '修改帐目成功')
     else
-      redirect_to new_zhangmu_path 
+      render "edit"
     end
   end
 
@@ -55,7 +55,7 @@ class ZhangmusController < ApplicationController
   def destroy
     @zhangmu = Zhangmu.find(params[:id])
     @zhangmu.destroy
-    redirect_to(new_zhangmu_path)
+    redirect_to new_zhangmu_path
   end
 
 end
