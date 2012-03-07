@@ -1,0 +1,29 @@
+defaults: &defaults
+  admin:
+    email: zhangcaiyanbeyond@gmail.com 
+    username: zhangcaiyan
+    password: zhangcaiyan
+    password_confirmation: zhangcaiyan
+
+  test: 
+    email: zhangcaiyanother@gmail.com
+    username: 1234
+    password: 1234
+    password_confirmation: 1234
+
+  user:
+    email: <%= Faker::Internet.email %>
+    username: <%= Faker::Name.name %>
+    password: zhangcaiyan
+    password_confirmation: zhangcaiyan
+
+    
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

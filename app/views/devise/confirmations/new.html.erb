@@ -4,16 +4,16 @@
 <div id="bottom_body">
   <div class="login_form">
     <%= devise_error_messages! %>
-    <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
       <table>
         <tr>
           <td><%= f.label :email %>:</td>
-          <td><%= f.text_field :email, :class => "login_input" %></td>
+          <td><%= f.text_field :email, class: "login_input" %></td>
         </tr>
         <tr>
           <td></td>
           <td style="text-align:right">
-            <%= f.submit "发送邮件", :class => "submit" %>
+            <%= f.submit "发送邮件", class: "submit" %>
           </td>
         </tr> 
       </table>

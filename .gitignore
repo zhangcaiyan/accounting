@@ -6,3 +6,13 @@ nbproject/*
 config/database.yml
 db/schema.rb
 Gemfile.lock
+public/ckeditor_assets/*
+public/system/*
+coverage
+coverage.data
+pkg
+*.swp
+.bundle
+doc/
+public/assets/*
+.sass-cache/

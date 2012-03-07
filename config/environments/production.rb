@@ -1,4 +1,14 @@
 Accounting::Application.configure do
+
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
+
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = false
+
+  # Generate digests for assets URLs
+  config.assets.digest = true 
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.
@@ -47,22 +57,13 @@ Accounting::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-
-
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.default_url_options = { :host => '216.24.193.106' }
+  config.action_mailer.default_url_options = Setting::Smtp["host"].to_options
 
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.smtp_settings = {
-    :address => "smtp.163.com",
-    :port => 25,
-    :domain => "163.com",
-    :authentication => :login,
-    :user_name => "zhangcaiyanbeyond@163.com", #你的邮箱
-    :password => "zhangcaiyan" #你的密码
-  }
+  config.action_mailer.smtp_settings = Setting::Smtp["config"].to_options
 end

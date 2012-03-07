@@ -9,7 +9,7 @@ class ZhangmusController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @zhangmu }
+      format.xml  { render xml: @zhangmu }
     end
   end
 

@@ -3,8 +3,8 @@
 module ApplicationHelper
 
   def title(title)
-    content_for :head do
-      content_tag "title", "#{title}-我的账本"
+    content_for :title do
+      title + " - "
     end
   end
 

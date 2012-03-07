@@ -47,9 +47,14 @@ zh-CN:
         zhangben_id: 账本
         fenlei_id: 分类
         shouzhi: 收支情况
-        enums:
-          shouzhi:
-            shouru: 收入
-            zhichu: 支出
+
+    symbolizes:
+      zhangmu:
+        shouzhi:
+          shouru: 收入
+          zhichu: 支出
+
+
+
 
 

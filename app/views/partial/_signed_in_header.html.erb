@@ -1,10 +1,10 @@
 <ul id="navigation">
-  <li><%= link_to "首页", home_path, :class => "home" %></li>
-  <li><%= link_to "记帐", new_zhangmu_path, :class => "jizhang" %></li>
-  <li><%= link_to "设置", edit_user_registration_path, :class => "set_up" %></li>
+  <li><%= link_to "首页", home_path, class: "home" %></li>
+  <li><%= link_to "记帐", new_zhangmu_path, class: "jizhang" %></li>
+  <li><%= link_to "设置", edit_user_registration_path, class: "set_up" %></li>
 </ul> 
 <ul id="about_me">
   <li><%= link_to "欢迎#{current_user.username}", home_path %></li>
-  <li><%= link_to('退出', destroy_user_session_path, :method => :delete, :class => "logout") %></li>
+  <li><%= link_to('退出', destroy_user_session_path, method: :delete, class: "logout") %></li>
 </ul>
 

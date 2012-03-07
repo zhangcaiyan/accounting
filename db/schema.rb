@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -16,16 +17,16 @@ ActiveRecord::Schema.define(:version => 20120117064539) do
     t.string   "name"
     t.text     "desc"
     t.integer  "zhangben_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "people", :force => true do |t|
     t.string   "name"
     t.text     "desc"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -45,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20120117064539) do
     t.integer  "failed_attempts",                       :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "username"
   end
 
@@ -57,8 +58,8 @@ ActiveRecord::Schema.define(:version => 20120117064539) do
     t.string   "name"
     t.text     "desc"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "zhangmus", :force => true do |t|
@@ -71,8 +72,8 @@ ActiveRecord::Schema.define(:version => 20120117064539) do
     t.integer  "people_id"
     t.integer  "zhangben_id"
     t.integer  "fenlei_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
 end

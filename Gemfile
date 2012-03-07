@@ -1,12 +1,11 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.2.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-gem 'mysql2', '< 0.3'
+gem 'mysql2'
 gem 'meta_search'
 gem "will_paginate"
 gem 'rmagick'
@@ -15,10 +14,23 @@ gem 'devise', '~> 1.5.3'
 gem 'i18n_generators'
 gem 'permanent_records'
 gem 'symbolize', :require => "symbolize/active_record"
+gem 'jquery-rails'
+gem 'settingslogic'
+gem "default_value_for"
+gem 'simple_form', '~> 2.0.0rc'
+gem "faker"
+gem 'ancestry'
 
                                        
 group :development, :test do
   gem 'ruby-debug19', :require => "ruby-debug"
+end
+
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
+  # gem 'therubyracer'
 end
 
 # Use unicorn as the web server

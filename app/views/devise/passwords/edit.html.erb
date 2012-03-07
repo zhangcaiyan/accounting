@@ -3,21 +3,21 @@
 <div id="bottom_body">
   <div class="login_form">
     <%= devise_error_messages! %>
-    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.hidden_field :reset_password_token %>
       <table>
         <tr>
           <td><%= f.label :password, "新密码" %>:</td>
-          <td><%= f.password_field :password, :class => "login_input" %></td>
+          <td><%= f.password_field :password, class: "login_input" %></td>
         </tr>
         <tr>
           <td><%= f.label :password_confirmation %>:</td>
-          <td><%= f.password_field :password_confirmation, :class => "login_input" %></td>
+          <td><%= f.password_field :password_confirmation, class: "login_input" %></td>
         </tr>
         <tr>
           <td></td>
           <td style="text-align:right">
-            <%= f.submit "确认", :class => "submit" %>
+            <%= f.submit "确认", class: "submit" %>
           </td>
         </tr> 
       </table>

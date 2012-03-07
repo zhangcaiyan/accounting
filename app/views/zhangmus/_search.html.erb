@@ -1,5 +1,5 @@
 <div style="display:none;" id="search">
-  <%= form_for(@search, :url => new_zhangmu_path, :method => :get, :html => {:class => "form"}) do |f| %>
+  <%= form_for(@search, url: new_zhangmu_path, method: :get, html: {class: "form"}) do |f| %>
     <table>
       <tr>
         <td><%= cn "zhangmu", "title" %>:</td>
@@ -10,9 +10,9 @@
       <tr>
         <td><%= cn "zhangmu", "date" %>:</td>
         <td>
-          <%= f.text_field :date_gte, :onclick => "WdatePicker()" %>
+          <%= f.text_field :date_gte, onclick: "WdatePicker()" %>
           -
-          <%= f.text_field :date_lte, :onclick => "WdatePicker()" %>
+          <%= f.text_field :date_lte, onclick: "WdatePicker()" %>
         </td>
       </tr>
       <tr>
@@ -26,34 +26,34 @@
       <tr>
         <td><%= cn "zhangmu", "shouzhi" %>:</td>
         <td>
-          <%= f.select "shouzhi_eq", options_for_select(Zhangmu.get_shouzhi_values, params[:search].try(:[], :shouzhi_eq)), {:include_blank => true} %>
+          <%= f.select "shouzhi_eq", options_for_select(Zhangmu.get_shouzhi_values, params[:search].try(:[], :shouzhi_eq)), {include_blank: true} %>
         </td>
       </tr>
       <tr>
         <td><%= cn "zhangmu", "zhangben_id" %>:</td>
         <td>
-          <%= f.select "zhangben_id_eq",  options_from_collection_for_select(current_user.zhangbens, :id, :name, params[:search].try(:[], :zhangben_id_eq)), {:include_blank => true}, :id => "search_zhangben" %>
+          <%= f.select "zhangben_id_eq",  options_from_collection_for_select(current_user.zhangbens, :id, :name, params[:search].try(:[], :zhangben_id_eq)), {include_blank: true}, id: "search_zhangben" %>
         </td>
       </tr>
       <tr>
         <td><%= cn "zhangmu", "fenlei_id" %>:</td>
         <td>
           <% if id = params[:search].try(:[], :zhangben_id_eq) %>
-            <%= f.select "fenlei_id_eq",  options_from_collection_for_select(Zhangben.find(id).fenleis, :id, :name, params[:search].try(:[], :fenlei_id_eq)), {:include_blank => true}, :id => "search_fenlei" %>
+            <%= f.select "fenlei_id_eq",  options_from_collection_for_select(Zhangben.find(id).fenleis, :id, :name, params[:search].try(:[], :fenlei_id_eq)), {include_blank: true}, id: "search_fenlei" %>
           <% else %>
-            <%= f.select "fenlei_id_eq",  [], {:include_blank => true}, :id => "search_fenlei" %>
+            <%= f.select "fenlei_id_eq",  [], {include_blank: true}, id: "search_fenlei" %>
           <% end %>
         </td>
       </tr>
       <tr>
         <td><%= cn "zhangmu", "people_id" %>:</td>
         <td>
-          <%= f.select "people_id_eq",  options_from_collection_for_select(current_user.peoples, :id, :name, params[:search].try(:[], :people_id_eq)), {:include_blank => true} %>
+          <%= f.select "people_id_eq",  options_from_collection_for_select(current_user.peoples, :id, :name, params[:search].try(:[], :people_id_eq)), {include_blank: true} %>
         </td>
       </tr>
       <tr>
         <td colspan="2" style="text-align:center;">
-          <%= f.submit "搜索", :class => "submit" %>
+          <%= f.submit "搜索", class: "submit" %>
         </td>
       </tr>
     </table>

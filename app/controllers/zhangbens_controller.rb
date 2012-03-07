@@ -7,7 +7,7 @@ class ZhangbensController < ApplicationController
   def show
     if request.xhr?
       @zhangben = Zhangben.find(params[:id])
-      render :json => @zhangben.fenleis
+      render json: @zhangben.fenleis
     end
   end
 

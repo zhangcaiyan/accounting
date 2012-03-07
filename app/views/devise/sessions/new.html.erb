@@ -9,15 +9,15 @@
         <li><%= alert %></li>
       </ul> 
     </span>
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <table>
         <tr>
           <td><%= f.label :login %>:</td>
-          <td><%= f.text_field :login, :value => "请输入用户名或email", :class => "login_input" %></td>
+          <td><%= f.text_field :login, value: "请输入用户名或email", class: "login_input" %></td>
         </tr>
         <tr>
           <td><%= f.label :password %>:</td>
-          <td> <%= f.password_field :password, :class => "login_input" %></td>
+          <td> <%= f.password_field :password, class: "login_input" %></td>
         </tr>
         <% if devise_mapping.rememberable? -%>
         <tr>
@@ -32,7 +32,7 @@
         <tr>
           <td></td>
           <td style="text-align:right">
-            <%= f.submit "登陆", :class => "submit" %>
+            <%= f.submit "登陆", class: "submit" %>
           </td>
         </tr> 
       </table>

@@ -1,0 +1,23 @@
+defaults: &defaults
+  config:
+    address: smtp.163.com
+    port: 25,
+    user_name: zhangcaiyanbeyond@163.com
+    password: zhangcaiyan
+    authentication: :login
+    domain: 163.com 
+
+
+
+development:
+  <<: *defaults
+  host:
+    host: localhost:3000 
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  host:
+    host: 216.24.193.106
