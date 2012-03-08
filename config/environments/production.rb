@@ -1,5 +1,19 @@
 Accounting::Application.configure do
 
+  path = config.paths["log"].first
+  unless File.exist? File.dirname path
+    FileUtils.mkdir_p File.dirname path
+  end
+  f = File.open path, 'w'
+  f.binmode
+  f.sync = true
+
+  config.logger = ActiveSupport::TaggedLogging.new(
+    ActiveSupport::BufferedLogger.new(f)
+  )
+  config.logger.level = ActiveSupport::BufferedLogger.const_get(config.log_level.to_s.upcase)
+  
+
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
@@ -20,7 +34,7 @@ Accounting::Application.configure do
   config.action_controller.perform_caching = true
 
   # Specifies the header that your server uses for sending files
-  config.action_dispatch.x_sendfile_header = "X-Sendfile"
+  #config.action_dispatch.x_sendfile_header = "X-Sendfile"
 
   # For nginx:
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
