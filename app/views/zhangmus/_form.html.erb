@@ -20,7 +20,7 @@
         <td class="label"><%= f.label :title %>:</td>
         <td><%= f.text_field :title, class: "text" %></td>
         <td class="label"><span class="import">*</span><%= f.label :date %>:</td>
-        <td><%= f.text_field :date, value: @zhangmu.date || Date.current, onclick: "WdatePicker()", class: "text" %></td>
+        <td><%= f.text_field :date, value: @zhangmu.date, onclick: "WdatePicker()", class: "text" %></td>
       </tr>
       <tr>
         <td class="label"><%= f.label :zhangben_id %>:</td>

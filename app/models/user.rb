@@ -16,10 +16,11 @@ class User < ActiveRecord::Base
 
   attr_accessor :login
 
-  after_create :add_peoples, :add_zhangbens_and_fenleis
+  after_create :add_people_name, :add_zhangbens_and_fenleis
+  after_update :update_people_name
   
   validates :username, length: {in: 1..20}, uniqueness: true
-  validates :password, length: {in: 1..20}
+  validates :password, length: {in: 1..20}, on: "create"
   validates :email, format: {
     with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/
   }, uniqueness: true
@@ -35,30 +36,19 @@ class User < ActiveRecord::Base
 
   private 
 
-  def add_peoples
+  def add_people_name
     peoples.create(name: username)
   end
 
+  def update_people_name
+    if username_changed?
+      people = peoples.find_by_name(username_change.first)
+      people.update_attributes(name: username_change.last )
+    end
+  end
+
   def add_zhangbens_and_fenleis
-    zhangbens.create(name: '日常支出', 
-                     fenleis_attributes: [
-                       {name: "餐饮"},
-                       {name: "房租"}, 
-                       {name: "交通"}, 
-                       {name: "其他"}]
-                    )
-    zhangbens.create(name: '借入借出',
-                     fenleis_attributes: [
-                       {name: "借出"},
-                       {name: "借出"}]
-                    )
-    zhangbens.create(name: '其他', 
-                     fenleis_attributes: [
-                       {name: "餐饮"},
-                       {name: "房租"}, 
-                       {name: "交通"}, 
-                       {name: "其他"}]
-                    )
+    zhangbens.create(Setting::App.zhangbens.values)
   end
 
 end

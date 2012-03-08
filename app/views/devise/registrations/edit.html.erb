@@ -20,17 +20,6 @@
         <td><%= f.text_field :username, class: "login_input" %></td>
       </tr>
       <tr>
-        <td></td>
-        <td><%= f.label :password %></td>
-        <td><%= f.password_field :password, class: "login_input" %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><%= f.label :password_confirmation %></td>
-        <td><%= f.password_field :password_confirmation, class: "login_input" %></td>
-        <td class="success_notice">*如果不打算修改密码，请保持为空</td>
-      </tr>
-      <tr>
         <td>*</td>
         <td><%= f.label :current_password %></td>
         <td><%= f.password_field :current_password, class: "login_input" %></td>
@@ -51,6 +40,6 @@
 
 
 <script type="text/javascript">
-  $(".set_up").addClass("current")
-  $(".edit_user").addClass("current")
+  jQuery(".set_up").addClass("current")
+  jQuery(".edit_user").addClass("current")
 </script>

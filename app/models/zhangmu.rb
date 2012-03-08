@@ -3,6 +3,9 @@
 class Zhangmu < ActiveRecord::Base
   symbolize :shouzhi, in: [:zhichu, :shouru], methods: true, scopes: true
 
+  default_value_for :shouzhi, "zhichu"
+  default_value_for :date, Date.current
+
   belongs_to :user
   belongs_to :fenlei
   belongs_to :zhangben
@@ -12,7 +15,7 @@ class Zhangmu < ActiveRecord::Base
   validates :date, presence: true
 
   def self.quanbu_zhichu(zhangmus)
-    zhangmus.where(shouzhi: "zhichu").collect(&:fee).sum.round(2)
+    zhangmus.where(shouzhi: "zhichu").pluck(:fee).sum.round(2)
   end
 
   def self.pingjun_zhichu(zhangmus)
@@ -22,7 +25,7 @@ class Zhangmu < ActiveRecord::Base
   end
 
   def self.quanbu_shouru(zhangmus)
-    zhangmus.where(shouzhi: "shouru").collect(&:fee).sum.round(2)
+    zhangmus.where(shouzhi: "shouru").pluck(:fee).sum.round(2)
   end
 
   def self.pingjun_shouru(zhangmus)

@@ -19,7 +19,6 @@ gem 'settingslogic'
 gem "default_value_for"
 gem 'simple_form', '~> 2.0.0rc'
 gem "faker"
-gem 'ancestry'
 
                                        
 group :development, :test do
