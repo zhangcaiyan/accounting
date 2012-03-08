@@ -46,32 +46,32 @@
 
 
 <script type="text/javascript">
-  jQuery(document).ready(function(){
-    jQuery("input[name='user[login]']").attr("class", "qianse_text login_input")
-    username_value = jQuery("input[name='user[login]']").val()
-    jQuery("input[name='user[login]']").bind("focus", function(){
-      if(jQuery(this).val()==username_value){
-        jQuery(this).attr("class", "login_input")
-        jQuery(this).attr("value", "")
+  $(document).ready(function(){
+    $("input[name='user[login]']").attr("class", "qianse_text login_input")
+    username_value = $("input[name='user[login]']").val()
+    $("input[name='user[login]']").bind("focus", function(){
+      if($(this).val()==username_value){
+        $(this).attr("class", "login_input")
+        $(this).attr("value", "")
       }
     })
 
-    jQuery("input[name='user[login]']").bind("blur", function(){
-      if (jQuery(this).attr("value")==''){
-        jQuery(this).attr("value", username_value)
-        jQuery(this).attr("class", "qianse_text login_input")
+    $("input[name='user[login]']").bind("blur", function(){
+      if ($(this).attr("value")==''){
+        $(this).attr("value", username_value)
+        $(this).attr("class", "qianse_text login_input")
       }
     })
 
-    jQuery(".remember").bind("click", function(){
-      is_checked = jQuery("input[name='user[remember_me]']").attr("checked")
+    $(".remember").bind("click", function(){
+      is_checked = $("input[name='user[remember_me]']").attr("checked")
       if (is_checked){
-        jQuery("input[name='user[remember_me]']").attr("checked", false)
+        $("input[name='user[remember_me]']").attr("checked", false)
       }else{
-        jQuery("input[name='user[remember_me]']").attr("checked", true) 
+        $("input[name='user[remember_me]']").attr("checked", true) 
       }
     })
 
-    jQuery(".login").addClass("current")
+    $(".login").addClass("current")
   })
 </script>

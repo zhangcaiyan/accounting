@@ -62,14 +62,14 @@
 
 
 <script type="text/javascript">
-  jQuery(function(){
-    jQuery("#search_zhangben option").click(function(){
-      path = "/zhangbens/" + jQuery(this).val()
-      jQuery.get(path, function(fenleis){
-        jQuery("#search_fenlei").html("")
-        jQuery("#search_fenlei").append("<option value=''></option>")
+  $(function(){
+    $("#search_zhangben option").click(function(){
+      path = "/zhangbens/" + $(this).val()
+      $.get(path, function(fenleis){
+        $("#search_fenlei").html("")
+        $("#search_fenlei").append("<option value=''></option>")
         fenleis.each(function(fenlei){
-          jQuery("#search_fenlei").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
+          $("#search_fenlei").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
         }) 
       })
     }) 

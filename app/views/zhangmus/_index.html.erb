@@ -65,13 +65,13 @@
 
 <script type="text/javascript">
 
-  jQuery(function(){
-    jQuery(".boxy").boxy({
+  $(function(){
+    $(".boxy").boxy({
       modal: true
     });    
   })
 
-  jQuery('.import_excel').click(function() {
+  $('.import_excel').click(function() {
     Boxy.confirm("确定导出帐目吗", function() { });
     return false;
   });

@@ -40,14 +40,14 @@
 
 
 <script type="text/javascript">
-  jQuery(document).ready(function(){
+  $(document).ready(function(){
 
-    jQuery("input[name='user[email]']").bind("blur", function(){
-      email = jQuery.trim(jQuery(this).val())
+    $("input[name='user[email]']").bind("blur", function(){
+      email = $.trim($(this).val())
       regexp = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-      notice_area = jQuery(this).parent().next()
+      notice_area = $(this).parent().next()
       notice_area.attr("class", "").text("")
-      jQuery.get("<%= verify_email_exist_path() %>", {email: email}, function(data){
+      $.get("<%= verify_email_exist_path() %>", {email: email}, function(data){
         if(email == ""){
           notice_area.text("邮箱不能为空").addClass("error_notice") 
         }else if(email.match(regexp)==null){
@@ -61,15 +61,15 @@
     })
 
 
-    jQuery("input[name='user[username]']").bind("focus", function(){
-      jQuery(this).parent().next().text("用户名长度不能超过20个字符").attr("class", "success_notice")
+    $("input[name='user[username]']").bind("focus", function(){
+      $(this).parent().next().text("用户名长度不能超过20个字符").attr("class", "success_notice")
     })
 
-    jQuery("input[name='user[username]']").bind("blur", function(){
-      username = jQuery.trim(jQuery(this).val())
-      notice_area = jQuery(this).parent().next()
+    $("input[name='user[username]']").bind("blur", function(){
+      username = $.trim($(this).val())
+      notice_area = $(this).parent().next()
       notice_area.attr("class", "").text("")
-      jQuery.get("<%= verify_username_exist_path() %>", {username: username}, function(data){
+      $.get("<%= verify_username_exist_path() %>", {username: username}, function(data){
         if(username == ""){
           notice_area.text("用户名不能为空").addClass("error_notice") 
 
@@ -86,33 +86,33 @@
     })
 
 
-    jQuery("input[name='user[password]']").bind("focus", function(){
-      jQuery(this).parent().next().text("密码长度不能超过20个字符").attr("class", "success_notice")
+    $("input[name='user[password]']").bind("focus", function(){
+      $(this).parent().next().text("密码长度不能超过20个字符").attr("class", "success_notice")
     })
 
-    jQuery("input[name='user[password]']").bind("blur", function(){
-      password = jQuery(this).val()
-      notice_area = jQuery(this).parent().next()
+    $("input[name='user[password]']").bind("blur", function(){
+      password = $(this).val()
+      notice_area = $(this).parent().next()
       notice_area.attr("class", "")
       if(password == ""){
         notice_area.text("密码不能为空").addClass("error_notice") 
       }else if(password.length < 20 && password.length >= 1){
         notice_area.text("密码可用").addClass("success_notice")
-        if(password == jQuery("input[name='user[password_confirmation]']").val()){
-          jQuery("input[name='user[password_confirmation]']").parent().next().text("两次输入的密码一致").attr("class", "success_notice")
+        if(password == $("input[name='user[password_confirmation]']").val()){
+          $("input[name='user[password_confirmation]']").parent().next().text("两次输入的密码一致").attr("class", "success_notice")
         }
       }else{
         notice_area.text("密码长度不能超过20个字符").addClass("error_notice")
       }
     })
 
-    jQuery("input[name='user[password_confirmation]']").bind("blur", function(){
-      password_confirm = jQuery(this).val()
-      notice_area = jQuery(this).parent().next()
+    $("input[name='user[password_confirmation]']").bind("blur", function(){
+      password_confirm = $(this).val()
+      notice_area = $(this).parent().next()
       if(password_confirm == ""){
         notice_area.text("密码确认不能为空").attr("class", "error_notice") 
       }
-      else if(password_confirm != jQuery("input[name='user[password]']").val()){
+      else if(password_confirm != $("input[name='user[password]']").val()){
         notice_area.text("两次输入的密码不一致").attr("class", "error_notice")
       }
       else{
@@ -121,7 +121,7 @@
 
     })
 
-    jQuery(".register").addClass("current")
+    $(".register").addClass("current")
 
 
   })

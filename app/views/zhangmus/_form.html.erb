@@ -49,13 +49,13 @@
 </div>
 
 <script type="text/javascript">
-  jQuery(function(){
-    jQuery("#zhangben option").click(function(){
-      path = "/zhangbens/" + jQuery(this).val()
-      jQuery.get(path, function(fenleis){
-        jQuery("#fenlei").html("")
+  $(function(){
+    $("#zhangben option").click(function(){
+      path = "/zhangbens/" + $(this).val()
+      $.get(path, function(fenleis){
+        $("#fenlei").html("")
         fenleis.each(function(fenlei){
-          jQuery("#fenlei").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
+          $("#fenlei").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
         }) 
       })
     }) 
