@@ -1,13 +1,7 @@
-<div id="zhangmu_list">
   <table>
-    <tr class="table_header">
+    <tr>
       <td colspan="6">
-        <div class="left">
-        </div>
-        <div class="center">
           <%= will_paginate @zhangmus %>
-        </div>
-        <div class="right">
           <ul>
           <li>
           <%= link_to "查询", "#search", class: "boxy", title: "查询帐目" %>
@@ -18,11 +12,10 @@
           </a>
           </li>
           </ul>
-        </div>
       </td>
     </tr>
-    <tr class="table_info_line">
-      <td colspan="6">
+    <tr>
+      <td>
         <ul>
           <li>平均支出: <%= Zhangmu.pingjun_zhichu(@search) %></li>
           <li>全部支出: <%= Zhangmu.quanbu_zhichu(@search) %></li>
@@ -32,25 +25,25 @@
       </td>
     </tr>
     <tr>
-      <th class="date"><%= sort_link @search, :date %></th>
-      <th class="desc"><%= cn "zhangmu", "desc" %></th>
-      <th class="account"><%= sort_link @search, :zhangben_id %></th>
-      <th class="cta">
+      <th><%= sort_link @search, :date %></th>
+      <th><%= cn "zhangmu", "desc" %></th>
+      <th><%= sort_link @search, :zhangben_id %></th>
+      <th>
         <%= sort_link @search, :fenlei_id %>|
         <%= sort_link @search, :title %>|
         <%= sort_link @search, :shouzhi %>
       </th>
-      <th class="money"><%= sort_link @search, :fee %></th>
-      <th class="option">操作</th>
+      <th><%= sort_link @search, :fee %></th>
+      <th>操作</th>
     </tr>
     <% @zhangmus.each do |zhangmu| %>
       <tr>
-        <td class="date"><%= l zhangmu.created_at.to_date %></td>
-        <td class="desc"><%= zhangmu.desc %></td>
-        <td class="account"><%= zhangmu.zhangben.try(:name) %></td>
-        <td class="cta"><%= zhangmu.fenlei.name %>|<%= zhangmu.title %>|<%= zhangmu.shouzhi_text %></td>
-        <td class="fee"><%= zhangmu.fee %></td>
-        <td class="option">
+        <td><%= l zhangmu.created_at.to_date %></td>
+        <td><%= zhangmu.desc %></td>
+        <td><%= zhangmu.zhangben.try(:name) %></td>
+        <td><%= zhangmu.fenlei.name %>|<%= zhangmu.title %>|<%= zhangmu.shouzhi_text %></td>
+        <td><%= zhangmu.fee %></td>
+        <td>
           <%= link_to "编辑", edit_zhangmu_path(zhangmu) %>
           <%= link_to "删除", zhangmu, confirm: '确定删除这条帐目吗?', method: :delete %>
         </td>
@@ -58,7 +51,6 @@
     <% end %>
 
   </table>
-</div>
 
 <%= render "search" %>
 

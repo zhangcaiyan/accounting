@@ -1,128 +1,16 @@
 <%= title "注册" %>
 
-<div id="bottom_body">
-  <div class="login_form">
 
-      <%= devise_error_messages! %>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <table>
-        <tr>
-          <td><%= f.label :email %>:</td>
-          <td><%= f.text_field :email, class: "login_input" %></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= f.label :username %>:</td>
-          <td><%= f.text_field :username, class: "login_input" %></td>
-          <td></td> 
-        </tr>
-        <tr>
-          <td><%= f.label :password %>:</td>
-          <td><%= f.password_field :password, class: "login_input" %></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= f.label :password_confirmation %>:</td>
-          <td><%= f.password_field :password_confirmation, class: "login_input" %></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td style="text-align:right">
-            <%= f.submit "注册", class: "submit" %>
-          </td>
-        </tr> 
-      </table>
-    <% end %>
-  </div>
-</div>
+<%= devise_error_messages! %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= f.input :email %>
+  <%= f.input :username %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.button :submit, "注册" %>
+<% end %>
+  
 
 
 
-<script type="text/javascript">
-  $(document).ready(function(){
 
-    $("input[name='user[email]']").bind("blur", function(){
-      email = $.trim($(this).val())
-      regexp = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-      notice_area = $(this).parent().next()
-      notice_area.attr("class", "").text("")
-      $.get("<%= verify_email_exist_path() %>", {email: email}, function(data){
-        if(email == ""){
-          notice_area.text("邮箱不能为空").addClass("error_notice") 
-        }else if(email.match(regexp)==null){
-          notice_area.text("邮箱格式错误").addClass("error_notice") 
-        }else if(data=="true"){
-          notice_area.text("邮箱已存在").addClass("error_notice")
-        }else{
-          notice_area.text("邮箱可用").addClass("success_notice")
-        }
-      })
-    })
-
-
-    $("input[name='user[username]']").bind("focus", function(){
-      $(this).parent().next().text("用户名长度不能超过20个字符").attr("class", "success_notice")
-    })
-
-    $("input[name='user[username]']").bind("blur", function(){
-      username = $.trim($(this).val())
-      notice_area = $(this).parent().next()
-      notice_area.attr("class", "").text("")
-      $.get("<%= verify_username_exist_path() %>", {username: username}, function(data){
-        if(username == ""){
-          notice_area.text("用户名不能为空").addClass("error_notice") 
-
-        }else if(username.length > 20){
-          notice_area.text("用户名不能超过20个字符").addClass("error_notice") 
-
-        }else if(data=="true"){
-          notice_area.text("用户名已存在").addClass("error_notice")
-        } else{
-          notice_area.text("用户名可用").addClass("success_notice")
-        }
-      })
-
-    })
-
-
-    $("input[name='user[password]']").bind("focus", function(){
-      $(this).parent().next().text("密码长度不能超过20个字符").attr("class", "success_notice")
-    })
-
-    $("input[name='user[password]']").bind("blur", function(){
-      password = $(this).val()
-      notice_area = $(this).parent().next()
-      notice_area.attr("class", "")
-      if(password == ""){
-        notice_area.text("密码不能为空").addClass("error_notice") 
-      }else if(password.length < 20 && password.length >= 1){
-        notice_area.text("密码可用").addClass("success_notice")
-        if(password == $("input[name='user[password_confirmation]']").val()){
-          $("input[name='user[password_confirmation]']").parent().next().text("两次输入的密码一致").attr("class", "success_notice")
-        }
-      }else{
-        notice_area.text("密码长度不能超过20个字符").addClass("error_notice")
-      }
-    })
-
-    $("input[name='user[password_confirmation]']").bind("blur", function(){
-      password_confirm = $(this).val()
-      notice_area = $(this).parent().next()
-      if(password_confirm == ""){
-        notice_area.text("密码确认不能为空").attr("class", "error_notice") 
-      }
-      else if(password_confirm != $("input[name='user[password]']").val()){
-        notice_area.text("两次输入的密码不一致").attr("class", "error_notice")
-      }
-      else{
-        notice_area.text("两次输入的密码一致").attr("class", "success_notice") 
-      }
-
-    })
-
-    $(".register").addClass("current")
-
-
-  })
-</script>

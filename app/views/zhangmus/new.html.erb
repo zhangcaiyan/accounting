@@ -2,48 +2,39 @@
 
 <%= render "left_navigation" %>
 
-<div id="right_body">
+<ul>
+<li>
+<span>当天支出:</span>
+<%= Zhangmu.dangtian_zhichu %>
+</li>
+<li>
+<span>全部支出:</span>
+<%= Zhangmu.quanbu_zhichu(current_user.zhangmus) %>
+</li>
+<li>
+<span>日均支出:</span>
+<%= Zhangmu.pingjun_zhichu(current_user.zhangmus)%>
+</li>
+<li>
+<span>当月支出:</span>
+<%= Zhangmu.dangyue_zhichu %>
+</li>
+<li>
+<span>当月日均支出:</span>
+<%= Zhangmu.dangyue_pingjun_zhichu %>
+</li>
+<li>
+<span>全部收入:</span>
+<%= Zhangmu.quanbu_shouru(current_user.zhangmus) %>
+</li>
+<li>
+<span>平均收入:</span>
+<%= Zhangmu.pingjun_shouru(current_user.zhangmus) %>
+</li> 
+</ul>
 
-  <div id="info">
-    <ul>
-      <li>
-        <span class="title">当天支出:</span>
-        <%= Zhangmu.dangtian_zhichu %>
-      </li>
-      <li>
-        <span class="title">全部支出:</span>
-        <%= Zhangmu.quanbu_zhichu(current_user.zhangmus) %>
-      </li>
-      <li>
-        <span class="title">日均支出:</span>
-        <%= Zhangmu.pingjun_zhichu(current_user.zhangmus)%>
-      </li>
-      <li>
-        <span class="title">当月支出:</span>
-        <%= Zhangmu.dangyue_zhichu %>
-      </li>
-      <li>
-        <span class="title">当月日均支出:</span>
-        <%= Zhangmu.dangyue_pingjun_zhichu %>
-      </li>
-      <li>
-        <span class="title">全部收入:</span>
-        <%= Zhangmu.quanbu_shouru(current_user.zhangmus) %>
-      </li>
-      <li>
-        <span class="title">平均收入:</span>
-        <%= Zhangmu.pingjun_shouru(current_user.zhangmus) %>
-      </li> 
-    </ul>
-  </div>
+<%= render "form" %>
 
-  <%= render "form" %>
+<%= render "index" %>
 
-  <%= render "index" %>
-</div>
 
-<script type="text/javascript">
-  $(function(){
-    $(".jizhang").addClass("current")
-  })
-</script>

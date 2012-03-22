@@ -2,44 +2,12 @@
 
 <%= render "partial/left_navigation" %>
 
-<div id="right_body">
-  
-  <div class="edit_user_form">
-    
   <%= devise_error_messages! %>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <table>
-      <tr>
-        <td>*</td>
-        <td><%= f.label :email %>:</td>
-        <td><%= f.text_field :email, class: "login_input" %></td>
-      </tr>
-      <tr>
-        <td>*</td>
-        <td><%= f.label :username %>:</td>
-        <td><%= f.text_field :username, class: "login_input" %></td>
-      </tr>
-      <tr>
-        <td>*</td>
-        <td><%= f.label :current_password %></td>
-        <td><%= f.password_field :current_password, class: "login_input" %></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td style="text-align:right">
-          <%= f.submit "更新", class: "submit" %>
-        </td>
-      </tr> 
-    </table>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.input :email %>
+    <%= f.input :username %>
+    <%= f.input :current_password %>
+    <%= f.button :submit, "更新" %>
   <% end %>
-  </div>
-</div>
 
 
-
-
-<script type="text/javascript">
-  jQuery(".set_up").addClass("current")
-  jQuery(".edit_user").addClass("current")
-</script>

@@ -1,52 +1,24 @@
-<div id="form">
-  <div class="error_messages error_notice">
-    <% if @zhangmu.errors.any? %>
-      <ul>
-        <% @zhangmu.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul> 
+<% if @zhangmu.errors.any? %>
+  <ul>
+    <% @zhangmu.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
     <% end %>
-  </div>
+  </ul> 
+<% end %>
 
-  <%= form_for(@zhangmu) do |f| %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <table>
-      <tr>
-        <td class="label"><span class="import">*</span><%= f.label :shouzhi %>:</td>
-        <td>
-          <%= f.select "shouzhi", options_for_select(Zhangmu.get_shouzhi_values, @zhangmu.shouzhi), {}, {class: "select"} %>
-        </td>
-        <td class="label"><%= f.label :title %>:</td>
-        <td><%= f.text_field :title, class: "text" %></td>
-        <td class="label"><span class="import">*</span><%= f.label :date %>:</td>
-        <td><%= f.text_field :date, value: @zhangmu.date, onclick: "WdatePicker()", class: "text" %></td>
-      </tr>
-      <tr>
-        <td class="label"><%= f.label :zhangben_id %>:</td>
-        <td>
-          <%= f.select "zhangben_id",  options_from_collection_for_select(current_user.zhangbens, :id, :name, @zhangmu.zhangben_id), {}, {class: "select", id: "zhangben"} %>
-        </td>
-        <td class="label"><span class="import">*</span><%= f.label :fee %>:</td>
-        <td><%= f.text_field :fee, class: "text" %></td>
-        <td class="label"><%= f.label :people_id %>:</td>
-        <td>
-          <%= f.select "people_id",  options_from_collection_for_select(current_user.peoples, :id, :name, @zhangmu.people_id), {}, {class: "select"} %>
-        </td>
-      </tr>
+<%= simple_form_for @zhangmu do |f| %>
+  <%= f.input :user_id, as: "hidden", value: current_user.id %>
+  <%= f.input :shouzhi, collection: Zhangmu.get_shouzhi_values, value: @zhangmu.shouzhi %>
+  <%= f.input :title %>
+  <%= f.input :date, as:"string", value: @zhangmu.date, input_html: {onclick: "WdatePicker()"} %>
+  <%= f.input :zhangben_id, collection: current_user.zhangbens, include_blank: @zhangmu.zhangben_id %>
+  <%= f.input :fee %>
+  <%= f.input :people_id, collection: current_user.peoples, include_blank: @zhangmu.people_id %>
+  <%= f.input :fenlei_id, collection: current_user.zhangbens.first.fenleis, include_blank: @zhangmu.fenlei_id %>
+  <%= f.input :desc %>
+  <%= f.button :submit, "保存" %>
+<% end %>
 
-      <tr>
-        <td class="label"><%= f.label :fenlei_id %>:</td>
-        <td>
-          <%= f.select "fenlei_id",  options_from_collection_for_select(current_user.zhangbens.first.fenleis, :id, :name, @zhangmu.fenlei_id), {}, {class: "select", id: "fenlei"} %>
-        </td>
-        <td class="label"><%= f.label :desc %>:</td>
-        <td><%= f.text_area :desc, class: "textarea" %></td>
-        <td></td><td><%= f.submit '保存', class: "submit" %></td>
-      </tr>
-    </table>
-  <% end %>
-</div>
 
 <script type="text/javascript">
   $(function(){

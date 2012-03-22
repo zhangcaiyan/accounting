@@ -8,10 +8,10 @@
     <%= javascript_include_tag "/javascripts/My97DatePicker/WdatePicker" %>
     <%= csrf_meta_tag %>
   </head>
-  <body id="main">
+  <body>
     <%= render '/partial/header' %>
 
-    <p class="notice success_notice"><%= notice %></p>
+    <%= notice %>
     <%= yield %>
 
   </body>

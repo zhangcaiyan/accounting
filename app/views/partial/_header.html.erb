@@ -1,15 +1,8 @@
-<div class="header">
-  <ul class="left">
-    <!--<li><a href="#" class="logo">我的账本</a></li>-->
-    <!--<li><a href="#" class="wangzhi">7ian8bao.com</a></li>-->
-  </ul>
-
-  <% if user_signed_in? %>
-    <%= render 'partial/signed_in_header' %>
-  <% else %>
-    <%= render 'partial/un_signed_in_header' %>
-  <% end %>
-</div>
+<% if user_signed_in? %>
+  <%= render 'partial/signed_in_header' %>
+<% else %>
+  <%= render 'partial/un_signed_in_header' %>
+<% end %>
 
 
 

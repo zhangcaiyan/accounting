@@ -1,77 +1,18 @@
 <%= title "登陆" %>
 
-<div id="bottom_body">
-  <div class="login_form">
-    <span id="notice" class="success_notice">
-    </span>
-    <span class="error_messages error_notice">
-      <ul>
-        <li><%= alert %></li>
-      </ul> 
-    </span>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <table>
-        <tr>
-          <td><%= f.label :login %>:</td>
-          <td><%= f.text_field :login, value: "请输入用户名或email", class: "login_input" %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :password %>:</td>
-          <td> <%= f.password_field :password, class: "login_input" %></td>
-        </tr>
-        <% if devise_mapping.rememberable? -%>
-        <tr>
-          <td class="remember">
-            <a href="#" class="un_underline_link">
-              <%= t 'activerecord.attributes.user.remember_me' %>:
-            </a>
-          </td>
-          <td style="text-align:left;"><%= f.check_box :remember_me %></td>
-        </tr>
-        <% end %>
-        <tr>
-          <td></td>
-          <td style="text-align:right">
-            <%= f.submit "登陆", class: "submit" %>
-          </td>
-        </tr> 
-      </table>
-    <% end %>
+<%= alert %> 
+<%= simple_form_for(resource, as: "user", url: session_path(resource_name)) do |f| %>
+  <%= f.input :login, placeholder: "请输入用户名或email" %>
+  <%= f.input :password %>
+  <% if devise_mapping.rememberable? -%>
+    <%= t 'activerecord.attributes.user.remember_me' %>:
+    <%= f.check_box :remember_me %>
+  <% end %>
+  <%= f.button :submit, "登陆" %>
+<% end %>
 
-    <div id="test_account" class="success_notice">
-      测试账户:  1234/1234
-    </div>
-  </div>
-</div>
+测试账户:  1234/1234
 
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $("input[name='user[login]']").attr("class", "qianse_text login_input")
-    username_value = $("input[name='user[login]']").val()
-    $("input[name='user[login]']").bind("focus", function(){
-      if($(this).val()==username_value){
-        $(this).attr("class", "login_input")
-        $(this).attr("value", "")
-      }
-    })
 
-    $("input[name='user[login]']").bind("blur", function(){
-      if ($(this).attr("value")==''){
-        $(this).attr("value", username_value)
-        $(this).attr("class", "qianse_text login_input")
-      }
-    })
 
-    $(".remember").bind("click", function(){
-      is_checked = $("input[name='user[remember_me]']").attr("checked")
-      if (is_checked){
-        $("input[name='user[remember_me]']").attr("checked", false)
-      }else{
-        $("input[name='user[remember_me]']").attr("checked", true) 
-      }
-    })
-
-    $(".login").addClass("current")
-  })
-</script>
