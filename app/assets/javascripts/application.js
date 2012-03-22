@@ -7,3 +7,6 @@
 //= require_tree .
 //= require highcharts.js
 //= requrie jquery.boxy.js
+//= require jquery.validationEngine.js
+//= require jquery.validationEngine-zh_CN.js
+//= require app.js

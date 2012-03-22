@@ -5,13 +5,13 @@ class UsersController < ApplicationController
 
   def verify_email_exist
     if request.xhr?
-      render text: User.exists?(email: params[:email])
+      render text: ["user_email", !User.exists?(email: params[:fieldValue])]
     end
   end
 
   def verify_username_exist
     if request.xhr?
-      render text: User.exists?(username: params[:username])
+      render text: ["user_username", !User.exists?(username: params[:fieldValue])]
     end
   end
 
