@@ -1,8 +1,8 @@
 <%= title "激活邮件" %>
 
 <%= devise_error_messages! %>
-<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.input :email %>
+<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { class: "validate_form" }) do |f| %>
+  <%= f.input :email, input_html: {class: "validate[required, custom[email]]" %>
   <%= f.button :submit, "发送邮件" %>
 <% end %>
 

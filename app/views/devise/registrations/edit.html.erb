@@ -3,10 +3,10 @@
 <%= render "partial/left_navigation" %>
 
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "validate_form"}) do |f| %>
   <%= f.input :email, readonly: true %>
-  <%= f.input :username %>
-  <%= f.input :current_password %>
+  <%= f.input :username, input_html: {class: "validate[required, maxSize[20], ajax[ajaxUserUsername]]"} %>
+  <%= f.input :current_password, hint: "请输入当前密码来更新账户" %>
   <%= f.button :submit, "更新" %>
 <% end %>
 

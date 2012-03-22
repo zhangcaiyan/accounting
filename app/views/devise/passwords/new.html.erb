@@ -1,7 +1,7 @@
 <%= title "忘记密码？" %>
 
-    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= f.input :email %>
-      <%= f.button :submit, "发送邮件" %>
-   <% end %>
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "validate_form" }) do |f| %>
+<%= f.input :email, input_html: {class: "validate[required, custom[email]]"} %>
+<%= f.button :submit, "发送邮件" %>
+<% end %>
 
