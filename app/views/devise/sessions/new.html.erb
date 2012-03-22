@@ -1,8 +1,8 @@
 <%= title "登陆" %>
 
 <%= alert %> 
-<%= simple_form_for(resource, as: "user", url: session_path(resource_name)) do |f| %>
-  <%= f.input :login, placeholder: "请输入用户名或email" %>
+<%= simple_form_for(resource, as: "user", url: session_path(resource_name), wrapper: :no_label) do |f| %>
+  <%= f.input :login %>
   <%= f.input :password %>
   <% if devise_mapping.rememberable? -%>
     <%= t 'activerecord.attributes.user.remember_me' %>:
