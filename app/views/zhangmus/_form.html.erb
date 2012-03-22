@@ -22,12 +22,12 @@
 
 <script type="text/javascript">
   $(function(){
-    $("#zhangben option").click(function(){
+    $("#zhangmu_zhangben_id option").click(function(){
       path = "/zhangbens/" + $(this).val()
       $.get(path, function(fenleis){
-        $("#fenlei").html("")
-        fenleis.each(function(fenlei){
-          $("#fenlei").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
+        $("#zhangmu_fenlei_id").html("")
+        $.each(fenleis, function(i, fenlei){
+          $("#zhangmu_fenlei_id").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
         }) 
       })
     }) 
