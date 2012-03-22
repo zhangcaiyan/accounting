@@ -1,6 +1,5 @@
 <%= title "注册" %>
 
-
 <%= devise_error_messages! %>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.input :email %>
@@ -10,7 +9,3 @@
   <%= f.button :submit, "注册" %>
 <% end %>
   
-
-
-
-
