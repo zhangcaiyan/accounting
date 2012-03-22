@@ -21,16 +21,14 @@ zh-CN:
     placeholders:
       user:
         new:
-          email: 电子邮件
-          username: 用户名
-          password: 密码
-          password_confirmation: 密码确认
           login: 请输入用户名或email
         
   helpers:
     submit:
       user:
-        create: '注册'
+        new:
+          create: '注册'
+
 
 
 

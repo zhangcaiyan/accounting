@@ -1,8 +1,7 @@
 <%= title "忘记密码？" %>
 
-  <%= devise_error_messages! %>
-    <%= simple_form_for(@user, url: password_path(resource_name), html: { method: :post }) do |f| %>
-      <%= f.input :email, label: false %>
+    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.input :email %>
       <%= f.button :submit, "发送邮件" %>
    <% end %>
 
