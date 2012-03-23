@@ -12,10 +12,10 @@
 <%= f.input :title %>
 <%= f.input :date, as:"string", value: @zhangmu.date, input_html: {onclick: "WdatePicker()", class: "validate[required, custom[date]]"} %>
 <%= f.input :zhangben_id, collection: current_user.zhangbens, include_blank: @zhangmu.zhangben_id %>
-<%= f.input :fee, input_html: {class: "validate[required, custom[number]]", value: ""} %>
+<%= f.input :fee, input_html: {class: "validate[required, custom[number]]", value: params[:action] == "new" ? "" : @zhangmu.fee} %>
 <%= f.input :people_id, collection: current_user.peoples, include_blank: @zhangmu.people_id %>
 <%= f.input :fenlei_id, collection: current_user.zhangbens.first.fenleis, include_blank: @zhangmu.fenlei_id %>
-<%= f.input :desc, input_html: {value: ""} %>
+<%= f.input :desc, input_html: {value: params[:action] == "new" ? "" : @zhangmu.desc} %>
 <%= f.button :submit, "保存" %>
 <% end %>
 
