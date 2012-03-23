@@ -1,4 +1,8 @@
 zh-CN:
+  will_paginate:
+    previous_label: 上一页
+    next_label: 下一页
+
   activerecord:
     models:
       user: 用户  #g

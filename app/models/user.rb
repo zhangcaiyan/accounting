@@ -21,12 +21,8 @@ class User < ActiveRecord::Base
   
   validates :username, length: {in: 1..20}, uniqueness: true
   validates :password, presence: true, confirmation: true, on: "create"
-  validates :email, format: {
-    with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/
-  }, uniqueness: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/ }, uniqueness: true
   
-
-
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     login = conditions.delete(:login)

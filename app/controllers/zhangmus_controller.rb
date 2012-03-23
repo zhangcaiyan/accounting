@@ -6,11 +6,6 @@ class ZhangmusController < ApplicationController
   # GET /zhangmus/1.xml
   def show
     @zhangmu = current_user.zhangmus.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render xml: @zhangmu }
-    end
   end
 
   # GET /zhangmus/new
@@ -18,7 +13,7 @@ class ZhangmusController < ApplicationController
   def new
     @zhangmu = current_user.zhangmus.new(params[:zhangmu])
     @search = current_user.zhangmus.search(params[:search])
-    @zhangmus = @search.page(params[:page]).order('created_at DESC').per_page(params[:per_page] || 20)
+    @zhangmus = @search.page(params[:page]).per_page(params[:per_page] || 20).order('created_at DESC')
   end
 
   # GET /zhangmus/1/edit
@@ -34,9 +29,8 @@ class ZhangmusController < ApplicationController
       redirect_to new_zhangmu_path(:zhangmu => params[:zhangmu]), :notice => '新建一条帐目'
     else
       @search = current_user.zhangmus.search(params[:search])
-      @zhangmus = @search.page(params[:page]).order('created_at DESC').per_page(params[:per_page] || 20)
+      @zhangmus = @search.page(params[:page]).per_page(params[:per_page] || 20).order('created_at DESC')
       render "new"
-    
     end
   end
 
@@ -60,3 +54,4 @@ class ZhangmusController < ApplicationController
   end
 
 end
+
