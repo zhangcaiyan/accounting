@@ -41,7 +41,7 @@
         <td><%= l zhangmu.created_at.to_date %></td>
         <td><%= zhangmu.desc %></td>
         <td><%= zhangmu.zhangben.try(:name) %></td>
-        <td><%= zhangmu.fenlei.name %>|<%= zhangmu.title %>|<%= zhangmu.shouzhi_text %></td>
+        <td><%= zhangmu.fenlei.try(:name) %>|<%= zhangmu.title %>|<%= zhangmu.shouzhi_text %></td>
         <td><%= zhangmu.fee %></td>
         <td>
           <%= link_to "编辑", edit_zhangmu_path(zhangmu) %>
