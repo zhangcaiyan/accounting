@@ -11,8 +11,8 @@ class Zhangmu < ActiveRecord::Base
   belongs_to :zhangben
   belongs_to :people
 
-  validates :fee, numericality: true, presence: true
-  validates :date, presence: true
+  validates :fee, numericality: true
+  validates_presence_of :date, :fee, :user_id, :shouzhi
 
   def self.quanbu_zhichu(zhangmus)
     zhangmus.where(shouzhi: "zhichu").pluck(:fee).sum.round(2)

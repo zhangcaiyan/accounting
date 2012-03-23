@@ -1,6 +1,7 @@
 <ul>
   <li><%= link_to "全部", new_zhangmu_path, class: "current" %></li>
-  <li><a href="#">日常支出</a></li>
-  <li><a href="#">借入借出</a></li>
-  <li><a href="#">其他</a></li>
+  <% current_user.zhangbens.each do |zhangben| %>
+    <li><%= link_to zhangben.name, new_zhangmu_path(search: {zhangben_id_eq: zhangben.id}) %></li>
+    
+  <% end %>
 </ul>

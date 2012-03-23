@@ -32,16 +32,16 @@
       <tr>
         <td><%= cn "zhangmu", "zhangben_id" %>:</td>
         <td>
-          <%= f.select "zhangben_id_eq",  options_from_collection_for_select(current_user.zhangbens, :id, :name, params[:search].try(:[], :zhangben_id_eq)), {include_blank: true}, id: "search_zhangben" %>
+          <%= f.select "zhangben_id_eq",  options_from_collection_for_select(current_user.zhangbens, :id, :name, params[:search].try(:[], :zhangben_id_eq)), {include_blank: true} %>
         </td>
       </tr>
       <tr>
         <td><%= cn "zhangmu", "fenlei_id" %>:</td>
         <td>
-          <% if id = params[:search].try(:[], :zhangben_id_eq) %>
-            <%= f.select "fenlei_id_eq",  options_from_collection_for_select(Zhangben.find(id).fenleis, :id, :name, params[:search].try(:[], :fenlei_id_eq)), {include_blank: true}, id: "search_fenlei" %>
+          <% if params[:search].try(:[], :zhangben_id_eq).present? %>
+            <%= f.select "fenlei_id_eq",  options_from_collection_for_select(current_user.zhangbens.find(params[:search][:zhangben_id_eq]).fenleis, :id, :name, params[:search].try(:[], :fenlei_id_eq)), {include_blank: true} %>
           <% else %>
-            <%= f.select "fenlei_id_eq",  [], {include_blank: true}, id: "search_fenlei" %>
+            <%= f.select "fenlei_id_eq",  [], {include_blank: true} %>
           <% end %>
         </td>
       </tr>
@@ -63,15 +63,17 @@
 
 <script type="text/javascript">
   $(function(){
-    $("#search_zhangben option").click(function(){
+    $("#search_zhangben_id_eq option").click(function(){
+      if($(this).val() != ""){
       path = "/zhangbens/" + $(this).val()
       $.get(path, function(fenleis){
-        $("#search_fenlei").html("")
-        $("#search_fenlei").append("<option value=''></option>")
-        fenleis.each(function(fenlei){
-          $("#search_fenlei").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
+        $("#search_fenlei_id_eq").html("")
+        $("#search_fenlei_id_eq").append("<option value=''></option>")
+        $.each(fenleis, function(i, fenlei){
+          $("#search_fenlei_id_eq").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
         }) 
       })
+      }
     }) 
   })
 </script>

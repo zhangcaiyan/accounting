@@ -36,6 +36,7 @@ class ZhangmusController < ApplicationController
       @search = current_user.zhangmus.search(params[:search])
       @zhangmus = @search.page(params[:page]).order('created_at DESC').per_page(params[:per_page] || 20)
       render "new"
+    
     end
   end
 

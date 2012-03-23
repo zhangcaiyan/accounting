@@ -13,10 +13,10 @@
 	.boxy-wrapper .boxy-bottom-right,
 	.boxy-wrapper .boxy-bottom-left { width: 10px; height: 10px; padding: 0 }
 	
-	:root .boxy-wrapper .boxy-top-left { background: url('../images/boxy-nw.png'); }
-	:root .boxy-wrapper .boxy-top-right { background: url('../images/boxy-ne.png'); }
-	:root .boxy-wrapper .boxy-bottom-right { background: url('../images/boxy-se.png'); }
-	:root .boxy-wrapper .boxy-bottom-left { background: url('../images/boxy-sw.png'); }
+	:root .boxy-wrapper .boxy-top-left { background: url("boxy-nw.png"); }
+	:root .boxy-wrapper .boxy-top-right { background: url('boxy-ne.png'); }
+	:root .boxy-wrapper .boxy-bottom-right { background: url('boxy-se.png'); }
+	:root .boxy-wrapper .boxy-bottom-left { background: url('boxy-sw.png'); }
 	
 	/* IE6-8 hacks for the border. IE7+8 should support this natively but fails in conjuction with modal blackout bg. */
 	/* NB: these must be absolute paths or URLs to your images */
