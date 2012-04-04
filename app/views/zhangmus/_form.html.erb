@@ -14,7 +14,7 @@
 <%= f.input :zhangben_id, collection: current_user.zhangbens, include_blank: false, prompt: @zhangmu.zhangben_id %>
 <%= f.input :fee, input_html: {class: "validate[required, custom[number]]", value: params[:action] == "new" ? "" : @zhangmu.fee} %>
 <%= f.input :people_id, collection: current_user.peoples, include_blank: false, prompt: @zhangmu.people_id %>
-<%= f.input :fenlei_id, collection: current_user.zhangbens.first.fenleis, include_blank: false, prompt: @zhangmu.fenlei_id %>
+<%= f.input :fenlei_id, collection: [], include_blank: false, prompt: @zhangmu.fenlei_id %>
 <%= f.input :desc, input_html: {value: params[:action] == "new" ? "" : @zhangmu.desc} %>
 <%= f.button :submit, "保存" %>
 <% end %>
@@ -22,7 +22,7 @@
 
 <script type="text/javascript">
 $(function(){
-  $("#zhangmu_zhangben_id option").click(function(){
+  $("#zhangmu_zhangben_id").change(function(){
     if($(this).val() != ""){
     path = "/zhangbens/" + $(this).val()
     $.get(path, function(fenleis){
@@ -32,7 +32,7 @@ $(function(){
         }) 
       })
     }
-    })
+    }).trigger("change")
   })
 </script>
 
