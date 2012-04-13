@@ -11,7 +11,12 @@ class UsersController < ApplicationController
 
   def verify_username_exist
     if request.xhr?
-      render text: ["user_username", !User.exists?(username: params[:fieldValue])]
+      statu = if current_user
+        !(User.exists?(username: params[:fieldValue]) && current_user.username != params[:fieldValue].strip)
+      else
+        !User.exists?(username: params[:fieldValue])
+      end
+      render text: ["user_username", statu]
     end
   end
 
