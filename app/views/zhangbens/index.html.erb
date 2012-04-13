@@ -1,2 +1,18 @@
-<h1>Zhengbens#index</h1>
-<p></p>
+<% title "账本管理" %>
+
+<table>
+  <tr><td>名称</td><td>描述</td><td>操作</td></tr>
+<% @zhangbens.each do |zhangben| %>
+  <tr>
+    <td><%= link_to zhangben.name, zhangben %></td>
+    <td><%= truncate zhangben.desc, length: 30 %></td>
+    <td>
+      <%= link_to "编辑", edit_zhangben_path(zhangben) %>
+    </td>
+    <td>
+      <%= link_to "删除", zhangben, method: :delete, confirm: "确认删除吗" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= link_to "创建账本", new_zhangben_path %>
