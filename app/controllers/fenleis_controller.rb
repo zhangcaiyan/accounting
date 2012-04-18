@@ -13,9 +13,9 @@ class FenleisController < ApplicationController
   end
 
   def show
-    @fenlei = fenleis.find(params[:id])
+    @fenleis = fenleis.where({shouzhi: params[:shouzhi]})
     if request.xhr?
-      render json: @fenlei.fenleis
+      render json: @fenleis
     end
   end
 

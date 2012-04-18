@@ -12,9 +12,6 @@ class ZhangbensController < ApplicationController
 
   def show
     @zhangben = zhangbens.find(params[:id])
-    if request.xhr?
-      render json: @zhangben.fenleis
-    end
   end
 
   def edit

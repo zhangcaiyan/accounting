@@ -1,38 +1,36 @@
 <% if @zhangmu.errors.any? %>
-<ul>
-<% @zhangmu.errors.full_messages.each do |msg| %>
-<li><%= msg %></li>
-<% end %>
-</ul> 
+  <ul>
+    <% @zhangmu.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul> 
 <% end %>
 
 <%= simple_form_for @zhangmu, html: {class: "validate_form"} do |f| %>
-<%= f.input :user_id, as: "hidden", value: current_user.id %>
-<%= f.input :shouzhi, collection: Zhangmu.get_shouzhi_values, value: @zhangmu.shouzhi, input_html: {class: "validate[required]"}, include_blank: false %>
-<%= f.input :title %>
-<%= f.input :date, as:"string", value: @zhangmu.date, input_html: {onclick: "WdatePicker()", class: "validate[required, custom[date]]"} %>
-<%= f.input :zhangben_id, collection: current_user.zhangbens, include_blank: false, prompt: @zhangmu.zhangben_id %>
-<%= f.input :fee, input_html: {class: "validate[required, custom[number]]", value: params[:action] == "new" ? "" : @zhangmu.fee} %>
-<%= f.input :people_id, collection: current_user.peoples, include_blank: false, prompt: @zhangmu.people_id %>
-<%= f.input :fenlei_id, collection: [], include_blank: false, prompt: @zhangmu.fenlei_id %>
-<%= f.input :desc, input_html: {value: params[:action] == "new" ? "" : @zhangmu.desc} %>
-<%= f.button :submit, "保存" %>
+  <%= f.input :user_id, as: "hidden", value: current_user.id %>
+  <%= f.input :shouzhi, collection: Zhangmu.get_shouzhi_values, value: @zhangmu.shouzhi, input_html: {class: "validate[required]"}, include_blank: false %>
+  <%= f.input :title %>
+  <%= f.input :date, as:"string", value: @zhangmu.date, input_html: {onclick: "WdatePicker()", class: "validate[required, custom[date]]"} %>
+  <%= f.input :zhangben_id, collection: current_user.zhangbens, include_blank: false, prompt: @zhangmu.zhangben_id %>
+  <%= f.input :fee, input_html: {class: "validate[required, custom[number]]", value: params[:action] == "new" ? "" : @zhangmu.fee} %>
+  <%= f.input :people_id, collection: current_user.peoples, include_blank: false, prompt: @zhangmu.people_id %>
+  <%= f.input :fenlei_id, collection: @fenleis, include_blank: false, prompt: @zhangmu.fenlei_id %>
+  <%= f.input :desc, input_html: {value: params[:action] == "new" ? "" : @zhangmu.desc} %>
+  <%= f.button :submit, "保存" %>
 <% end %>
 
 
 <script type="text/javascript">
-$(function(){
-  $("#zhangmu_zhangben_id").change(function(){
-    if($(this).val() != ""){
-    path = "/zhangbens/" + $(this).val()
-    $.get(path, function(fenleis){
-      $("#zhangmu_fenlei_id").html("")
-      $.each(fenleis, function(i, fenlei){
-        $("#zhangmu_fenlei_id").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
+  $(function(){
+    $("#zhangmu_shouzhi").change(function(){
+      var shouzhi = $(this).val()
+      $.get("<%= fenlei_path('id') %>", {shouzhi: shouzhi}, function(fenleis){
+        $("#zhangmu_fenlei_id").html("")
+        $.each(fenleis, function(i, fenlei){
+          $("#zhangmu_fenlei_id").append("<option value="+fenlei.fenlei.id+">"+fenlei.fenlei.name+"</option>")
         }) 
       })
-    }
-    }).trigger("change")
+    })
   })
 </script>
 
