@@ -1,7 +1,7 @@
 <%= simple_form_for @zhangben, html: {class: "validate_form"} do |f| %>
   <div class="inputs">
     <%= f.input :name, input_html: {class: "validate[required, maxSize[20]]"} %>
-    <%= f.input :desc, input_html: {class: "validate[maxSize[500]]"} %>
+    <%= f.input :desc, input_html: {class: "validate[maxSize[1000]]"} %>
   </div>
 
   <div class="actions">
