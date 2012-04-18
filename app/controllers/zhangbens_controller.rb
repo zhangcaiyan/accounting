@@ -2,6 +2,7 @@
 
 class ZhangbensController < ApplicationController
   before_filter :zhangbens
+
   def index
   end
 

@@ -1,9 +1,12 @@
 # coding: utf-8
 
 class Fenlei < ActiveRecord::Base
-  belongs_to :zhangben
   has_many :zhangmus, dependent: :nullify
+  belongs_to :user
 
-  validates :name, uniqueness: {scope: :zhangben_id}, length: {in: 1..20}
+  validates :name, uniqueness: {scope: :user_id}, length: {in: 1..20}
   validates :desc, length: {maximum: 500}
+
+  symbolize :shouzhi, in: [:zhichu, :shouru], methods: true, scopes: true
+  default_value_for :shouzhi, "zhichu"
 end

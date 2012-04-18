@@ -41,6 +41,7 @@ zh-CN:
       fenlei:
         name: 名称
         desc: 描述
+        shouzhi: 收支
 
       zhangmu:
         title: 标题
@@ -54,6 +55,11 @@ zh-CN:
 
     symbolizes:
       zhangmu:
+        shouzhi:
+          shouru: 收入
+          zhichu: 支出
+
+      fenlei:
         shouzhi:
           shouru: 收入
           zhichu: 支出

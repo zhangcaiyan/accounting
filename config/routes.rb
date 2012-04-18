@@ -1,7 +1,8 @@
 Accounting::Application.routes.draw do
 
-
   resources :zhangmus
+
+  resources :fenleis
 
   resources :zhangbens
 

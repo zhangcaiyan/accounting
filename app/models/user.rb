@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :zhangbens
-  has_many :fenleis, through: :zhangbens
+  has_many :fenleis
+  has_many :zhichu_fenleis, class_name: "Fenlei", conditions: {shouzhi: :zhichu}
+  has_many :shouru_fenleis, class_name: "Fenlei", conditions: {shouzhi: :shouru}
   has_many :peoples
   has_many :zhangmus
 
@@ -45,6 +47,7 @@ class User < ActiveRecord::Base
 
   def add_zhangbens_and_fenleis
     zhangbens.create(Setting::App.zhangbens.values)
+    fenleis.create(Setting::App.fenleis.values)
   end
 
 end

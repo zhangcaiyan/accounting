@@ -1,0 +1,6 @@
+<%= simple_form_for @fenlei, html: {class: "validate_form"} do |f| %>
+  <%= f.input :name, input_html: {class: "validate[required, maxSize[20]]"} %>
+  <%= f.input :shouzhi, as: :radio_buttons, collection: Fenlei.get_shouzhi_values %>
+  <%= f.input :desc %>
+  <%= f.button :submit %>
+<% end %>

@@ -2,15 +2,40 @@ defaults: &defaults
   zhangbens: 
     zhangben1:
       name: 日常支出
-      fenleis_attributes: [{name: 餐饮}, {name: 房租}, {name: 交通}, {name: 其他}]
 
     zhangben2:
       name: 借入借出
-      fenleis_attributes: [{name: 借出}, {name: 借入}]
 
     zhangben3:
       name: 其他
-      fenleis_attributes: [{name: 其他}]
+
+  fenleis: 
+    fenlei1:
+      name: 餐饮
+      shouzhi: :zhichu
+    fenlei2: 
+      name: 房租
+      shouzhi: :zhichu
+    fenlei3:
+      name: 交通
+      shouzhi: :zhichu
+    fenlei4:
+      name: 其他
+      shouzhi: :zhichu
+    fenlei5:
+      name: 工资
+      shouzhi: :shouru
+    fenlei6:
+      name: 奖金
+      shouzhi: :shouru
+    fenlei7:
+      name: 补贴/津贴
+      shouzhi: :shouru
+    fenlei8: 
+      name: 其他
+      shouzhi: :shouru
+    
+      
 
 
 
