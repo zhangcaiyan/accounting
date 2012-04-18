@@ -5,7 +5,7 @@ class FenleisController < ApplicationController
 
   def index
     @search = current_user.fenleis.search(params[:search])
-    @fenleis = @search
+    @fenleis = @search.order("shouzhi DESC")
   end
 
   def new
