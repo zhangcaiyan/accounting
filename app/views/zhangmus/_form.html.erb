@@ -22,6 +22,25 @@
 
 <script type="text/javascript">
   $(function(){
+
+    $("#zhangmu_zhangben_id").append("<option class='manage'>管理账本</option>")
+
+    $("#zhangmu_zhangben_id .manage").click(function(){
+      window.location.href="<%= zhangbens_path %>"
+    })
+
+    $("#zhangmu_people_id").append("<option class='manage'>管理人员</option>")
+
+    $("#zhangmu_people_id .manage").click(function(){
+      window.location.href="<%= peoples_path %>"
+    })
+
+    $("#zhangmu_fenlei_id").append("<option class='manage'>管理分类</option>")
+
+    $("#zhangmu_fenlei_id .manage").click(function(){
+      window.location.href="<%= fenleis_path %>"
+    })
+
     $("#zhangmu_shouzhi").change(function(){
       var shouzhi = $(this).val()
       $.get("<%= fenlei_path('id') %>", {shouzhi: shouzhi}, function(fenleis){
