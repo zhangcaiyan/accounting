@@ -48,6 +48,11 @@ class FenleisController < ApplicationController
     redirect_to fenleis_path
   end
 
+  def set_default
+    @fenlei = fenleis.find(params[:id])
+    @fenlei.move_to_top
+  end
+
   private
 
   def fenleis

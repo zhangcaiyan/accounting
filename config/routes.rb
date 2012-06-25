@@ -2,11 +2,23 @@ Accounting::Application.routes.draw do
 
   resources :zhangmus
 
-  resources :fenleis
+  resources :fenleis do
+    member do
+      get "set_default"
+    end
+  end
 
-  resources :zhangbens
+  resources :zhangbens do
+    member do
+      get "set_default"
+    end
+  end
 
-  resources :peoples
+  resources :peoples do
+    member do
+      get "set_default"
+    end
+  end
 
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' } 
 

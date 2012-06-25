@@ -4,15 +4,15 @@
 
 <table>
   <tr>
+    <th>默认</th>
     <th>名称</th>
-    <th><%= sort_link @search, :shouzhi %></th>
     <th>说明</th>
     <th>操作</th>
   </tr>
 <% @fenleis.each do |fenlei| %>
   <tr>
-    <td><%= fenlei.name %></td>
-    <td><%= fenlei.shouzhi_text %></td>
+    <td><%= radio_button_tag "fenlei", fenlei.id, fenlei.position == "1" %></td>
+    <td><%= link_to fenlei.name, fenlei %></td>
     <td><%= fenlei.desc %></td>
     <td>
       <%= link_to "编辑", edit_fenlei_path(fenlei) %>
@@ -23,3 +23,13 @@
 </table>
 
 <%= link_to '添加分类', new_fenlei_path %>
+
+<script>
+  $(function(){
+    $(":radio[name='fenlei']").bind("change", function(){
+      var fenlei_id = $(this).val()
+      $.get("/fenleis/"+fenlei_id+"/set_default")
+    })
+  })
+</script>
+

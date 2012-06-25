@@ -34,7 +34,12 @@ class ZhangbensController < ApplicationController
     else
       render "new" 
     end
+  end
 
+  def set_default
+     @zhangben = zhangbens.find(params[:id])
+     @zhangben.move_to_top
+     render nothing: true
   end
 
   def destroy

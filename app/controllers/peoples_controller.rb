@@ -44,6 +44,12 @@ class PeoplesController < ApplicationController
     redirect_to peoples_path
   end
 
+  def set_default
+    @people = peoples.find(params[:id])
+    @people.move_to_top
+    render nothing: true
+  end
+
   private
 
   def peoples

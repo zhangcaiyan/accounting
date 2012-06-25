@@ -1,4 +1,4 @@
 <%= link_to "账本管理", zhangbens_path %>
-<%= link_to "分类管理", fenleis_path %>
+<%= link_to "分类管理", fenleis_path(search: {shouzhi_eq: "zhichu"}) %>
 <%= link_to "人员管理", peoples_path %>
 <%= link_to '编辑用户信息', edit_user_registration_path %>

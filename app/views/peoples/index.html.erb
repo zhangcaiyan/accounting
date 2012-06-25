@@ -4,13 +4,15 @@
 
 <table>
   <tr>
+    <th>默认</th>
     <th>名称</th>
     <th>说明</th>
     <th>操作</th>
   </tr>
 <% @peoples.each do |people| %>
   <tr>
-    <td><%= people.name %></td>
+    <td><%= radio_button_tag "people", people.id, people.position == "1" %></td>
+    <td><%= link_to people.name, people_path(people) %></td>
     <td><%= people.desc %></td>
     <td>
       <%= link_to "编辑", edit_people_path(people) %>
@@ -21,3 +23,12 @@
 </table>
 
 <%= link_to '添加人员', new_people_path %>
+
+<script>
+  $(function(){
+    $(":radio[name='people']").bind("change", function(){
+      var people_id = $(this).val()
+      $.get("/peoples/"+people_id+"/set_default", {id: people_id})
+    })
+  })
+</script>

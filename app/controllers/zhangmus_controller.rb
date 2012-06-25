@@ -11,8 +11,10 @@ class ZhangmusController < ApplicationController
   # GET /zhangmus/new
   # GET /zhangmus/new.xml
   def new
+    @zhangbens = current_user.zhangbens.order(:position)
+    @peoples = current_user.peoples.order(:position)
     @zhangmu = current_user.zhangmus.new(params[:zhangmu])
-    @fenleis = current_user.fenleis.where({shouzhi: @zhangmu.shouzhi})
+    @fenleis = current_user.fenleis.where({shouzhi: @zhangmu.shouzhi}).order(:position)
     @search = current_user.zhangmus.search(params[:search])
     @zhangmus = @search.page(params[:page]).per_page(20).order('created_at DESC')
   end
