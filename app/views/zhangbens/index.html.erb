@@ -1,9 +1,10 @@
 <% title "账本管理" %>
 
 <table>
-  <tr><td>名称</td><td>描述</td><td>操作</td></tr>
+  <tr><th>默认</th><th>名称</th><th>描述</th><th>操作</th></tr>
 <% @zhangbens.each do |zhangben| %>
   <tr>
+    <td><%= radio_button_tag "zhangben", zhangben.id, zhangben.position == "1" %></td>
     <td><%= link_to zhangben.name, zhangben %></td>
     <td><%= truncate zhangben.desc, length: 30 %></td>
     <td>

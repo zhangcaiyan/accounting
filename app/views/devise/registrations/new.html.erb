@@ -2,7 +2,7 @@
 <br/>
 <br/>
 <br/>
-<%= simple_form_for(@user, url: registration_path(resource_name), wrapper: :no_label, html: {class: "validate_form"}) do |f| %>
+<%= simple_form_for(@user, url: registration_path(resource_name), wrapper: :no_label, html: {class: ""}) do |f| %>
   <%= f.input :email, placeholder: "邮箱", input_html: {class: "validate[required, custom[email], ajax[ajaxUserEmail]]"} %>
   <%= f.input :username, placeholder: "用户名", input_html: {class: "validate[required, maxSize[20], ajax[ajaxUserUsername]]"} %>
   <%= f.input :password, placeholder: "密码", input_html: {class: "validate[required]"} %>

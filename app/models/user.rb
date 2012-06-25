@@ -3,11 +3,11 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  has_many :zhangbens
-  has_many :fenleis
+  has_many :zhangbens, order: "position"
+  has_many :fenleis, order: "position"
   has_many :zhichu_fenleis, class_name: "Fenlei", conditions: {shouzhi: :zhichu}
   has_many :shouru_fenleis, class_name: "Fenlei", conditions: {shouzhi: :shouru}
-  has_many :peoples
+  has_many :peoples, order: "position"
   has_many :zhangmus
 
   devise :database_authenticatable, :registerable,
