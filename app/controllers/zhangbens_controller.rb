@@ -32,7 +32,7 @@ class ZhangbensController < ApplicationController
     if @zhangben.save
       redirect_to @zhangben, notice: "创建账本成功"
     else
-      render "new" 
+      render "new"
     end
   end
 
