@@ -16,7 +16,7 @@ class ZhangmusController < ApplicationController
     @zhangmu = current_user.zhangmus.new(params[:zhangmu])
     @fenleis = current_user.fenleis.where({shouzhi: @zhangmu.shouzhi}).order(:position)
     @search = current_user.zhangmus.search(params[:search])
-    @zhangmus = @search.page(params[:page]).per_page(20).order('created_at DESC')
+    @zhangmus = @search.page(params[:page]).per_page(2).order('created_at DESC')
   end
 
   # GET /zhangmus/1/edit

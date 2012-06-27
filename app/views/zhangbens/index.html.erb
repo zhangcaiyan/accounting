@@ -1,22 +1,41 @@
 <% title "账本管理" %>
 
-<table>
-  <tr><th>默认</th><th>名称</th><th>描述</th><th>操作</th></tr>
-<% @zhangbens.each do |zhangben| %>
-  <tr>
-    <td><%= radio_button_tag "zhangben", zhangben.id, zhangben.position == "1" %></td>
-    <td><%= link_to zhangben.name, zhangben %></td>
-    <td><%= truncate zhangben.desc, length: 30 %></td>
-    <td>
-      <%= link_to "编辑", edit_zhangben_path(zhangben) %>
-    </td>
-    <td>
-      <%= link_to "删除", zhangben, method: :delete, confirm: "确认删除吗" %>
-    </td>
-  </tr>
-<% end %>
-</table>
-<%= link_to "创建账本", new_zhangben_path %>
+<%= render "/partial/left_navigation" %>
+
+<div id="right_body">
+  <div id="manage_zhangben">
+    <table border="0" cellspacing="0" cellpadding="0">
+      <tr class="table_info_line">
+        <td colspan="4">
+          <span id="info">
+            <%= link_to "添加账本", new_zhangben_path %>
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th class="default">默认</th>
+        <th class="name">名称</th>
+        <th class="desc">说明</th>
+        <th class="option">操作</th>
+      </tr>
+      <% @zhangbens.each do |zhangben| %>
+        <tr>
+          <td class="default">
+            <%= radio_button_tag "zhangben", zhangben.id, zhangben.position == "1" %>
+          </td>
+          <td class="name">
+            <%= link_to zhangben.name, edit_zhangben_path(zhangben) %>
+          </td>
+          <td class="desc"><%= truncate zhangben.desc, length: 30 %></td>
+          <td class="option">
+            <%= link_to "编辑", edit_zhangben_path(zhangben) %> <%= link_to "删除", zhangben, method: :delete, confirm: "确认删除吗" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
 
 <script>
   $(function(){
@@ -24,5 +43,9 @@
       var zhangben_id = $(this).val()
       $.get("/zhangbens/"+zhangben_id+"/set_default")
     })
+
+    $("#shezhi").addClass("current")
+
+    $("#zhangbenguanli").addClass("current")
   })
 </script>

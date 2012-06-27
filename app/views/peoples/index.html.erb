@@ -1,28 +1,40 @@
-<h1>人员管理</h1>
 <% title "人员管理" %>
 
+<%= render "/partial/left_navigation" %>
 
-<table>
-  <tr>
-    <th>默认</th>
-    <th>名称</th>
-    <th>说明</th>
-    <th>操作</th>
-  </tr>
-<% @peoples.each do |people| %>
-  <tr>
-    <td><%= radio_button_tag "people", people.id, people.position == "1" %></td>
-    <td><%= link_to people.name, people_path(people) %></td>
-    <td><%= people.desc %></td>
-    <td>
-      <%= link_to "编辑", edit_people_path(people) %>
-      <%= link_to "删除", people_path(people), method: :delete, confirm: "确定删除吗?" %>
-    </td>
-  </tr>
-<% end %>
-</table>
+<div id="right_body">
+<div id="manage_people">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr class="table_info_line">
+      <td colspan="4">
+        <span id="info">
+          <%= link_to '添加人员', new_people_path %>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <th class="default">默认</th>
+      <th class="name">名称</th>
+      <th class="desc">说明</th>
+      <th class="option">操作</th>
+    </tr>
+    <% @peoples.each do |people| %>
+    <tr>
+      <td class="default">
+        <%= radio_button_tag "people", people.id, people.position == "1" %>
+      </td>
+      <td class="name"><%= link_to people.name, edit_people_path(people) %></td>
+      <td class="desc"><%= people.desc %></td>
+      <td class="option">
+        <%= link_to "编辑", edit_people_path(people) %>
+        <%= link_to "删除", people_path(people), method: :delete, confirm: "确定删除吗?" %>
+      </td>
+    </tr>
+  <% end %>
 
-<%= link_to '添加人员', new_people_path %>
+  </table>
+</div>
+</div>
 
 <script>
   $(function(){
@@ -30,5 +42,9 @@
       var people_id = $(this).val()
       $.get("/peoples/"+people_id+"/set_default", {id: people_id})
     })
+
+    $("#shezhi").addClass("current")
+
+    $("#renyuanguanli").addClass("current")
   })
 </script>

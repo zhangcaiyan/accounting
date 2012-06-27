@@ -1,17 +1,36 @@
 <%= title "登陆" %>
 
-<%= alert %> 
-<%= simple_form_for(resource, as: "user", url: session_path(resource_name), wrapper: :no_label) do |f| %>
-  <%= f.input :login %>
-  <%= f.input :password, placeholder: '密码' %>
+<div id="login">
+  <%= simple_form_for(resource, as: "user", url: session_path(resource_name)) do |f| %>
+  <div id="notice_error" class="alert">
+   <ul>
+   <li><%= alert %></li>
+   </ul>
+  </div>
+  <%= f.input :login, input_html: {class: "wenben1"} %>
+  <%= f.input :password, input_html: {class: "wenben1"} %>
   <% if devise_mapping.rememberable? -%>
-    <%= t 'activerecord.attributes.user.remember_me' %>:
+    <div>
+    <label for="user_remember_me">记住密码</label>
     <%= f.check_box :remember_me %>
+    </div>
   <% end %>
-  <%= f.button :submit, "登陆" %>
-<% end %>
 
-测试账户:  1234/1234
+   <div>
+   <%= f.button :submit, "登陆", class: "button" %>
+   <input value="试用" type="button" class="button"/>
+   </div>
+  <% end %>
+
+</div>
+
+<script>
+  $(function(){
+    $(".login").addClass("current")
+  })
+</script>
+
+
 
 
 

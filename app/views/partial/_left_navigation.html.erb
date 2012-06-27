@@ -1,4 +1,11 @@
-<%= link_to "账本管理", zhangbens_path %>
-<%= link_to "分类管理", fenleis_path(search: {shouzhi_eq: "zhichu"}) %>
-<%= link_to "人员管理", peoples_path %>
-<%= link_to '编辑用户信息', edit_user_registration_path %>
+<div id="left_body">
+  <ul>
+    <li><%= link_to "账本管理", zhangbens_path, id: "zhangbenguanli" %></li>
+    <li><%= link_to "分类管理", fenleis_path(search: {shouzhi_eq: "zhichu"}), id: "fenleiguanli" %></li>
+    <li><%= link_to "人员管理", peoples_path, id: "renyuanguanli" %></li>
+    <li><%= link_to '编辑用户信息', edit_user_registration_path, id: "bianjiyonghu" %></li>
+    <li><a href="edit_password.html" id="xiugaimima">修改密码</a></li>
+  </ul>
+</div>
+
+

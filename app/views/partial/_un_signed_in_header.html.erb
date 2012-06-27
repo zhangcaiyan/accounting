@@ -1,5 +1,14 @@
-<%= link_to '登陆', new_user_session_path %>
-<%= link_to '注册', new_user_registration_path %>
-<%= link_to "忘记密码?", new_password_path(resource_name) %>
+<div id="header_unsinged">
+  <div class="logo">
+    <%= image_tag "logo.png", width: 60, height: 60 %>
+  </div>
+  <div class="navigation">
+     <ul>
+       <li><%= link_to "忘记密码?", new_password_path(resource_name), class: "forget" %></li>
+       <li><%= link_to '注册', new_user_registration_path, class: "register" %></li>
+       <li><%= link_to '登陆', new_user_session_path, class: "login" %></li>
+    </ul>
+  </div>
+</div>
 
 

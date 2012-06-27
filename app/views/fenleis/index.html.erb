@@ -1,35 +1,59 @@
-<h1>类别管理</h1>
 <% title "类别管理" %>
 
+<%= render "/partial/left_navigation" %>
 
-<table>
-  <tr>
-    <th>默认</th>
-    <th>名称</th>
-    <th>说明</th>
-    <th>操作</th>
-  </tr>
-<% @fenleis.each do |fenlei| %>
-  <tr>
-    <td><%= radio_button_tag "fenlei", fenlei.id, fenlei.position == "1" %></td>
-    <td><%= link_to fenlei.name, fenlei %></td>
-    <td><%= fenlei.desc %></td>
-    <td>
-      <%= link_to "编辑", edit_fenlei_path(fenlei) %>
-      <%= link_to "删除", fenlei_path(fenlei), method: :delete, confirm: "确定删除吗?" %>
-    </td>
-  </tr>
-<% end %>
-</table>
+<div id="right_body">
+<div id="manage_fenlei">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr class="table_info_line">
+      <td colspan="4">
+        <span id="info">
+          <% if params[:search][:shouzhi_eq] == "zhichu" %>
+            当前为 支出分类,还需要<%= link_to '添加分类', new_fenlei_path %>吗？或者管理<%= link_to "收入分类", fenleis_path(search: {shouzhi_eq: "shouru"}) %>? 
+          <% else %>
+            当前为 收入分类,还需要<%= link_to '添加分类', new_fenlei_path %>吗？或者管理<%= link_to "支出分类", fenleis_path(search: {shouzhi_eq: "zhichu"}) %>? 
+          <% end %>
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <th class="default">默认</th>
+      <th class="name">名称</th>
+      <th class="desc">说明</th>
+      <th class="option">操作</th>
+    </tr>
+    <% @fenleis.each do |fenlei| %>
+    <tr>
+      <td class="default">
+        <%= radio_button_tag "fenlei", fenlei.id, fenlei.position == "1" %>
+      </td>
+      <td class="name">
+        <%= link_to fenlei.name, edit_fenlei_path(fenlei) %>
+      </td>
+      <td class="desc"><%= fenlei.desc %></td>
+      <td class="option">
+        <%= link_to "编辑", edit_fenlei_path(fenlei) %>
+        <%= link_to "删除", fenlei_path(fenlei), method: :delete, confirm: "确定删除吗?" %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>
+</div>
 
-<%= link_to '添加分类', new_fenlei_path %>
 
 <script>
   $(function(){
+
     $(":radio[name='fenlei']").bind("change", function(){
       var fenlei_id = $(this).val()
       $.get("/fenleis/"+fenlei_id+"/set_default")
     })
+
+    $("#shezhi").addClass("current")
+
+    $("#fenleiguanli").addClass("current")
   })
 </script>
+
 

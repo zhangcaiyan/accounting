@@ -1,10 +1,11 @@
 <% if user_signed_in? %>
-  <%= render 'partial/signed_in_header' %><br/>
-  <%= render "partial/left_navigation" %><br/>
+  <%= render 'partial/signed_in_header' %>
+  <%= notice %>
+  <%= yield %>
 <% else %>
   <%= render 'partial/un_signed_in_header' %>
+  <%= notice %>
+  <%= yield %>
 <% end %>
 <br/>
-
-
 

@@ -8,11 +8,17 @@
     <%= javascript_include_tag "/javascripts/My97DatePicker/WdatePicker" %>
     <%= csrf_meta_tag %>
   </head>
-  <body>
-    <%= render '/partial/header' %>
-
-    <%= notice %>
-    <%= yield %>
-
-  </body>
+  <% if user_signed_in? %>
+    <body id="body_singed">
+      <%= render 'partial/signed_in_header' %><br/>
+      <%= notice %>
+      <%= yield %>
+    </body>
+  <% else %>
+    <body id="body_unsinged">
+      <%= render 'partial/un_signed_in_header' %>
+      <%= notice %>
+      <%= yield %>
+    </body>
+  <% end %>
 </html>

@@ -1,6 +1,20 @@
-<%= link_to "首页", home_path %>
-<%= link_to "记帐", new_zhangmu_path %>
-<%= link_to "设置", edit_user_registration_path %>
-<%= link_to "欢迎#{current_user.username}", home_path %>
-<%= link_to '退出', destroy_user_session_path, method: :delete %>
+<div id="header_singed">
+    <div class="logo">
+    <%= image_tag "logo.png", width: 60, height: 60 %>
+    </div>
+    <div class="navigation">
+       <ul>
+         <li><%= link_to "记帐", new_zhangmu_path, id: "jizhang" %></li>
+         <li><%= link_to "统计", home_path, id: "tongji" %></li>
+         <li><%= link_to "设置", edit_user_registration_path, id: "shezhi" %></li>
+      </ul>
+    </div>
+    <div class="other">
+       <ul>
+         <li><%= link_to "欢迎#{current_user.username}", home_path %></li>
+         <li><%= link_to '退出', destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </div>
+</div>
+
 
