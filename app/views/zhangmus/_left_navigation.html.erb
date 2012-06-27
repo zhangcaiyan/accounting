@@ -1,7 +1,0 @@
-<ul>
-  <li><%= link_to "全部", new_zhangmu_path, class: "current" %></li>
-  <% current_user.zhangbens.each do |zhangben| %>
-    <li><%= link_to zhangben.name, new_zhangmu_path(search: {zhangben_id_eq: zhangben.id}) %></li>
-    
-  <% end %>
-</ul>
