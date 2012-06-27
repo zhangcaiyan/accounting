@@ -659,6 +659,9 @@ body,td,th {
   float: left;
   width: 100%;
   height: auto;
+}
+
+#body_singed #right_body #jizhang_info ul{
   margin-left: 40px;
   margin-top: 20px;
 }
@@ -696,7 +699,7 @@ body,td,th {
 #body_singed #right_body #jizhang_form form div label{
   width: 80px;
   height: 50px;
-  text-align: right;
+  text-align: center;
   display:block;
   float: left;
 }
@@ -729,6 +732,9 @@ body,td,th {
   float: left;
   width: 100%;
   height: auto;
+}
+
+#right_body #zhangmu_list table{
   margin-left: 40px;
 }
 
