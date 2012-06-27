@@ -49,7 +49,7 @@
     })
 
     $("#zhangmu_fenlei_id .manage").click(function(){
-      window.location.href="<%= fenleis_path %>"
+      window.location.href="<%= fenleis_path(search: {shouzhi_eq: 'zhichu'}) %>"
     })
 
     $("#zhangmu_shouzhi").change(function(){
