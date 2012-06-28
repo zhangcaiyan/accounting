@@ -78,6 +78,9 @@ nmap ySs <Plug>YSsurround
 nmap yss <Plug>Yssurround
 nmap yS <Plug>YSurround
 nmap ys <Plug>Ysurround
+nmap <S-Insert> "+gP
+nnoremap <C-Tab> w
+nnoremap <C-F4> c
 map <F4> :TlistToggle
 map <F3> :NERDTreeToggle
 snoremap <Left> bi
@@ -86,10 +89,8 @@ snoremap <BS> b<BS>
 snoremap <silent> <S-Tab> i<Right>=BackwardsSnippet()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
 onoremap <C-F4> c
-nnoremap <C-F4> c
 vnoremap <C-F4> c
 onoremap <C-Tab> w
-nnoremap <C-Tab> w
 vnoremap <C-Tab> w
 vmap <S-Insert> 
 vnoremap <C-Insert> "+y
@@ -120,7 +121,6 @@ nnoremap <silent> <Plug>NERDCommenterComment :call NERDComment(0, "norm")
 map <F2> :tabprevious
 map <C-Space> ?
 map <silent> <C-F2> :if &guioptions =~# 'T' |set guioptions-=T |set guioptions-=m |else |set guioptions+=T |set guioptions+=m |endif
-nmap <S-Insert> "+gP
 omap <S-Insert> "+gP
 cnoremap  gggHG
 inoremap  gggHG
@@ -191,17 +191,22 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +1 app/views/zhangmus/_form.html.erb
-badd +0 app/views/zhangmus/new.html.erb
+badd +1 app/views/zhangmus/new.html.erb
 badd +9 app/views/zhangbens/_form.html.erb
-badd +0 app/models/zhangben.rb
+badd +1 app/models/zhangben.rb
+badd +0 app/views/home/index.html.erb
 silent! argdel *
-edit app/views/zhangmus/_form.html.erb
+edit app/views/home/index.html.erb
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 wincmd _ | wincmd |
 vsplit
 2wincmd h
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
 wincmd w
 wincmd w
 wincmd _ | wincmd |
@@ -212,12 +217,15 @@ set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
-exe 'vert 1resize ' . ((&columns * 31 + 90) / 180)
-exe 'vert 2resize ' . ((&columns * 74 + 90) / 180)
-exe '3resize ' . ((&lines * 20 + 21) / 42)
-exe 'vert 3resize ' . ((&columns * 73 + 90) / 180)
-exe '4resize ' . ((&lines * 19 + 21) / 42)
-exe 'vert 4resize ' . ((&columns * 73 + 90) / 180)
+exe 'vert 1resize ' . ((&columns * 41 + 90) / 180)
+exe '2resize ' . ((&lines * 20 + 21) / 42)
+exe 'vert 2resize ' . ((&columns * 72 + 90) / 180)
+exe '3resize ' . ((&lines * 19 + 21) / 42)
+exe 'vert 3resize ' . ((&columns * 72 + 90) / 180)
+exe '4resize ' . ((&lines * 20 + 21) / 42)
+exe 'vert 4resize ' . ((&columns * 65 + 90) / 180)
+exe '5resize ' . ((&lines * 19 + 21) / 42)
+exe 'vert 5resize ' . ((&columns * 65 + 90) / 180)
 argglobal
 enew
 file NERD_tree_1
@@ -286,13 +294,13 @@ setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal grepprg=
 setlocal iminsert=2
-setlocal imsearch=2
+setlocal imsearch=0
 setlocal include=
 setlocal includeexpr=RailsIncludeexpr()
 setlocal indentexpr=
 setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
 setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
+setlocal iskeyword=@,48-57,_,192-255,$
 setlocal keywordprg=
 set linebreak
 setlocal linebreak
@@ -306,7 +314,7 @@ setlocal nrformats=octal,hex
 set number
 setlocal nonumber
 setlocal numberwidth=4
-setlocal omnifunc=
+setlocal omnifunc=rubycomplete#Complete
 setlocal path=.,~/wode/app/accounting,~/wode/app/accounting/app,~/wode/app/accounting/app/models,~/wode/app/accounting/app/controllers,~/wode/app/accounting/app/helpers,~/wode/app/accounting/config,~/wode/app/accounting/lib,~/wode/app/accounting/app/views,~/wode/app/accounting/test,~/wode/app/accounting/test/unit,~/wode/app/accounting/test/functional,~/wode/app/accounting/test/integration,~/wode/app/accounting/app/*,~/wode/app/accounting/vendor,~/wode/app/accounting/vendor/plugins/*/lib,~/wode/app/accounting/vendor/plugins/*/test,~/wode/app/accounting/vendor/rails/*/lib,~/wode/app/accounting/vendor/rails/*/test,/usr/include
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -437,6 +445,144 @@ set number
 setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=rubycomplete#Complete
+setlocal path=.,~/wode/app/accounting,~/wode/app/accounting/app,~/wode/app/accounting/app/models,~/wode/app/accounting/app/controllers,~/wode/app/accounting/app/helpers,~/wode/app/accounting/config,~/wode/app/accounting/lib,~/wode/app/accounting/app/views,~/wode/app/accounting/app/views/home,~/wode/app/accounting/public,~/wode/app/accounting/test,~/wode/app/accounting/test/unit,~/wode/app/accounting/test/functional,~/wode/app/accounting/test/integration,~/wode/app/accounting/app/*,~/wode/app/accounting/vendor,~/wode/app/accounting/vendor/plugins/*/lib,~/wode/app/accounting/vendor/plugins/*/test,~/wode/app/accounting/vendor/rails/*/lib,~/wode/app/accounting/vendor/rails/*/test,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby/1.9.1,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby/1.9.1/i686-linux,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/vendor_ruby/1.9.1,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/vendor_ruby/1.9.1/i686-linux,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/vendor_ruby,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/i686-linux,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/abstract-1.0.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionmailer-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionmailer-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionmailer-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionpack-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionpack-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionpack-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activemodel-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activemodel-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activemodel-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activerecord-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activerecord-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activerecord-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activeresource-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activeresource-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activeresource-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activesupport-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activesupport-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activesupport-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/acts_as_list-0.1.6/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/ancestry-1.2.4/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/archive-tar-minitar-0.5.2/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/arel-2.0.10/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/arel-2.2.3/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/arel-3.0.2/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/bcrypt-ruby-3.0.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/builder-2.1.2/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/builder-3.0.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/bundle-0.0.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/bundler-1.0.22/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/cocaine-0.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/coffee-rails-3.1.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/coffee-rails-3.2.2/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/coffee-script-2.2.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/coffee-script-source-1.2.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/columnize-0.3.6/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/daemon_controller-1.0.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/default_value_for-1.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/devise-1.5.3/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/domain_name-0.5.2/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/erubis-2.6.6/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/erubis-2.7.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/execjs-1.3.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/faker-1.0.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/fastthread-1.0.7/ext,~/.rvm/gems/ruby-1.9.2-p290@ac
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=
+setlocal suffixesadd=.rb,.rhtml,.erb,.rxml,.builder,.rjs,.mab,.liquid,.haml,.dryml,.mn,.slim
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'eruby'
+setlocal syntax=eruby
+endif
+setlocal tabstop=8
+setlocal tags=~/wode/app/accounting/tmp/tags,./tags,./TAGS,tags,TAGS,/,~/wode/app/accounting/tags
+setlocal textwidth=500
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+silent! normal! zE
+let s:l = 12 - ((11 * winheight(0) + 10) / 20)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+12
+normal! 07l
+wincmd w
+argglobal
+edit app/views/zhangmus/_form.html.erb
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer> f <Plug>RailsSplitFind
+nnoremap <buffer> <silent> g} :exe        "ptjump =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> } :exe          "ptag =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> g] :exe      "stselect =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> g :exe        "stjump =RubyCursorIdentifier()"
+nnoremap <buffer> <silent>  :exe v:count1."stag =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> ] :exe v:count1."stag =RubyCursorIdentifier()"
+nnoremap <buffer> <silent>  :exe  v:count1."tag =RubyCursorIdentifier()"
+nmap <buffer> [f <Plug>RailsAlternate
+nmap <buffer> ]f <Plug>RailsRelated
+nmap <buffer> gf <Plug>RailsFind
+nnoremap <buffer> <silent> g] :exe       "tselect =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> g :exe         "tjump =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> <Plug>RailsTabFind :RTfind
+nnoremap <buffer> <silent> <Plug>RailsVSplitFind :RVfind
+nnoremap <buffer> <silent> <Plug>RailsSplitFind :RSfind
+nnoremap <buffer> <silent> <Plug>RailsFind :REfind
+nnoremap <buffer> <silent> <Plug>RailsRelated :R
+nnoremap <buffer> <silent> <Plug>RailsAlternate :A
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal balloonexpr=RubyBalloonexpr()
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=<%#%s%>
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=syntaxcomplete#Complete
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'eruby'
+setlocal filetype=eruby
+endif
+setlocal foldcolumn=0
+set nofoldenable
+setlocal nofoldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=^\\s*\\<\\(load\\|w*require\\)\\>
+setlocal includeexpr=RailsIncludeexpr()
+setlocal indentexpr=GetErubyIndent()
+setlocal indentkeys=o,O,*<Return>,<>>,{,},0),0],o,O,!^F,=end,=else,=elsif,=rescue,=ensure,=when
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255,$
+setlocal keywordprg=ri\ -T
+set linebreak
+setlocal linebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:],<:>
+setlocal nomodeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=rubycomplete#Complete
 setlocal path=.,~/wode/app/accounting,~/wode/app/accounting/app,~/wode/app/accounting/app/models,~/wode/app/accounting/app/controllers,~/wode/app/accounting/app/helpers,~/wode/app/accounting/config,~/wode/app/accounting/lib,~/wode/app/accounting/app/views,~/wode/app/accounting/app/views/zhangmus,~/wode/app/accounting/public,~/wode/app/accounting/test,~/wode/app/accounting/test/unit,~/wode/app/accounting/test/functional,~/wode/app/accounting/test/integration,~/wode/app/accounting/app/*,~/wode/app/accounting/vendor,~/wode/app/accounting/vendor/plugins/*/lib,~/wode/app/accounting/vendor/plugins/*/test,~/wode/app/accounting/vendor/rails/*/lib,~/wode/app/accounting/vendor/rails/*/test,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby/1.9.1,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby/1.9.1/i686-linux,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/site_ruby,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/vendor_ruby/1.9.1,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/vendor_ruby/1.9.1/i686-linux,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/vendor_ruby,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1,~/.rvm/rubies/ruby-1.9.2-p290/lib/ruby/1.9.1/i686-linux,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/abstract-1.0.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionmailer-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionmailer-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionmailer-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionpack-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionpack-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/actionpack-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activemodel-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activemodel-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activemodel-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activerecord-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activerecord-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activerecord-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activeresource-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activeresource-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activeresource-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activesupport-3.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activesupport-3.1.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/activesupport-3.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/ancestry-1.2.4/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/archive-tar-minitar-0.5.2/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/arel-2.0.10/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/arel-2.2.3/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/arel-3.0.2/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/bcrypt-ruby-3.0.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/builder-2.1.2/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/builder-3.0.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/bundle-0.0.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/bundler-1.0.22/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/cocaine-0.2.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/coffee-rails-3.1.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/coffee-rails-3.2.2/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/coffee-script-2.2.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/coffee-script-source-1.2.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/columnize-0.3.6/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/daemon_controller-1.0.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/default_value_for-1.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/devise-1.5.3/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/domain_name-0.5.2/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/erubis-2.6.6/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/erubis-2.7.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/execjs-1.3.0/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/faker-1.0.1/lib,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/fastthread-1.0.7/ext,~/.rvm/gems/ruby-1.9.2-p290@accounting/gems/fastthread-1.0.7/lib,~/.rvm/gems/ruby-1.9.2-p290@
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -471,12 +617,12 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 20) / 40)
+let s:l = 10 - ((3 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+10
+normal! 0153l
 wincmd w
 argglobal
 edit app/models/zhangben.rb
@@ -747,20 +893,22 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 19 - ((8 * winheight(0) + 9) / 19)
+let s:l = 19 - ((0 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 19
-normal! 025l
+normal! 033l
 wincmd w
-3wincmd w
-exe 'vert 1resize ' . ((&columns * 31 + 90) / 180)
-exe 'vert 2resize ' . ((&columns * 74 + 90) / 180)
-exe '3resize ' . ((&lines * 20 + 21) / 42)
-exe 'vert 3resize ' . ((&columns * 73 + 90) / 180)
-exe '4resize ' . ((&lines * 19 + 21) / 42)
-exe 'vert 4resize ' . ((&columns * 73 + 90) / 180)
+exe 'vert 1resize ' . ((&columns * 41 + 90) / 180)
+exe '2resize ' . ((&lines * 20 + 21) / 42)
+exe 'vert 2resize ' . ((&columns * 72 + 90) / 180)
+exe '3resize ' . ((&lines * 19 + 21) / 42)
+exe 'vert 3resize ' . ((&columns * 72 + 90) / 180)
+exe '4resize ' . ((&lines * 20 + 21) / 42)
+exe 'vert 4resize ' . ((&columns * 65 + 90) / 180)
+exe '5resize ' . ((&lines * 19 + 21) / 42)
+exe 'vert 5resize ' . ((&columns * 65 + 90) / 180)
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
