@@ -426,6 +426,10 @@ body,td,th {
   color: red;
 }
 
+.notice{
+  color:#0099BB;
+}
+
 .button {
   background: url("/assets/buttonBlueBg.gif") repeat-x scroll left top transparent;
   border: 1px solid #056672;
@@ -685,8 +689,6 @@ body,td,th {
   height: 200px;
 }
 
-
-
 #body_singed #right_body #jizhang_form form div{
   float: left;
   margin-bottom: 10px;
@@ -707,7 +709,6 @@ body,td,th {
 #body_singed #right_body #jizhang_form form div input{
   float: left;
 }
-
 
 .select1 {
   border-color: #96A6C5;
@@ -856,11 +857,7 @@ abbr{
   color: #FF6600;
 }
 
-
-
-
-
-
-
-
+#edit_password span.notice {
+  line-height: 40px;
+}
 

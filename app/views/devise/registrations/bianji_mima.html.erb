@@ -1,0 +1,25 @@
+<%= title "修改密码" %>
+
+<%= render "partial/left_navigation" %>
+
+<div id="right_body">
+  <div id="edit_password">
+    <span class="notice"><%= flash[:notice] %></span>
+    <%= simple_form_for(resource, :url => update_password_path, :html => { :method => :put }) do |f| %>
+      <%= f.input :current_password, as: :password, input_html: {autocomplete: "off", class: "wenben4"} %>
+      <%= f.input :password, as: :password, label: "新密码", input_html: {autocomplete: "off", class: "wenben4"} %>
+      <%= f.input :password_confirmation, as: :password, input_html: {autocomplete: "off", class: "wenben4"} %>
+      <div>
+        <%= f.submit "确认", class: "button" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<script>
+  $(function(){
+    $("#shezhi").addClass("current")
+    $("#bianji_mima").addClass("current")
+  })
+</script>

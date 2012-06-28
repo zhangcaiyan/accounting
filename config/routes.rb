@@ -22,6 +22,11 @@ Accounting::Application.routes.draw do
 
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :sign_up => 'register' } 
 
+  devise_scope :user do
+    get "bianji_mima", :to => "devise/registrations#bianji_mima"
+    put "update_password", :to => "devise/registrations#update_password"
+  end
+
   root :to => "home#index"
 
   get 'home' => "home#index"
