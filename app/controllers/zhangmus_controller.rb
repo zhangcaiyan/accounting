@@ -16,7 +16,7 @@ class ZhangmusController < ApplicationController
     @fenleis = current_user.fenleis.where({shouzhi: @zhangmu.shouzhi}).order(:position)
     @peoples = current_user.peoples.order(:position)
     @search = current_user.zhangmus.search(params[:search])
-    @zhangmus = @search.page(params[:page]).per_page(2).order('created_at DESC')
+    @zhangmus = @search.page(params[:page]).per_page(20).order('created_at DESC')
   end
 
   # GET /zhangmus/1/edit
@@ -57,6 +57,12 @@ class ZhangmusController < ApplicationController
     @zhangmu = current_user.zhangmus.find(params[:id])
     @zhangmu.destroy
     redirect_to new_zhangmu_path
+  end
+
+  def percentage
+    zhangmus = current_user.zhangmus.search(params[:search])
+    current_month_zhangmus = current_user.zhangmus.search({created_at_gte: Date.current.at_beginning_of_month, created_at_lt: Date.current.at_end_of_month+1})
+    render json:  {quanbu: Zhangmu.fenleibi(zhangmus), yue: Zhangmu.fenleibi(current_month_zhangmus), quanbu_title: "全部支出饼图(#{Zhangmu.quanbu_zhichu(zhangmus)}￥)", yue_title: "当月支出饼图 (#{Zhangmu.quanbu_zhichu(current_month_zhangmus)}￥)"}
   end
 
 end

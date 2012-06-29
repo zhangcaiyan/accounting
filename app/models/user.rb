@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :shouru_fenleis, class_name: "Fenlei", conditions: {shouzhi: :shouru}
   has_many :peoples
   has_many :zhangmus
+  has_many :zhichu_zhangmus, class_name: "Zhangmu", conditions: {shouzhi: :zhichu}
+  has_many :shouru_zhangmus, class_name: "Zhangmu", conditions: {shouzhi: :shouru}
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :confirmable, :lockable

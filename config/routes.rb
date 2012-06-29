@@ -1,6 +1,10 @@
 Accounting::Application.routes.draw do
 
-  resources :zhangmus
+  resources :zhangmus do
+    collection do
+      get "percentage"
+    end
+  end
 
   resources :fenleis do
     member do

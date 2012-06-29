@@ -1,119 +1,106 @@
 <% title "首页" %>
 
-<% if nil %>
-<div id="bottom_body">
-  <div id="all_zhichu_container"></div>
-  <div id="month_zhichu_container"></div>     
+<div id="tongji_bottom_body">
+  <div id="left">
+    <div id="all_zhichu_container"></div>
+  </div>
+  <div id="right">
+    <div id="month_zhichu_container"></div>
+  </div>
 </div>
-<% end %>
+
 
 <script type="text/javascript">
-  var chart;
+  $(function(){
+    $("#shouye").addClass("current")
+  })
+
   $(document).ready(function() {
-    chart = new Highcharts.Chart({
-    chart: {
-      renderTo: 'all_zhichu_container',
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false
-    },
-    title: {
-      text: '全部支出饼图'
-    },
-    tooltip: {
-      formatter: function() {
-        return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
-      }
-    },
-    plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
-        dataLabels: {
-          enabled: true,
-          color: '#000000',
-          connectorColor: '#000000',
-          formatter: function() {
-            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+    quanbu_chart_option = {
+      chart: {
+        backgroundColor: "#F2F2F2",
+        renderTo: 'all_zhichu_container',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: "全部支出饼图"
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+        }
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function() {
+              return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+            }
           }
         }
-      }
-    },
-    series: [{
-      type: 'pie',
-      name: 'Browser share',
-      data: [
-        ['食物',   45.0],
-        ['租房',       26.8],
-        {
-          name: '家具',    
-          y: 12.8,
-          sliced: true,
-          selected: true
-        },
-        ['衣服',    8.5],
-        ['购物',     6.2],
-        ['其他',   0.7]
-      ]
-    }]
-  });
-});
-              
-</script>
+      },
+      series: [{
+        type: 'pie',
+        name: 'Browser share',
+        data: []
+      }]
+    }
 
-<script type="text/javascript">
-
-  var chart;
-  $(document).ready(function() {
-    chart = new Highcharts.Chart({
-    chart: {
-      renderTo: 'month_zhichu_container',
-      plotBackgroundColor: null,
-      plotBorderWidth: null,
-      plotShadow: false
-    },
-    title: {
-      text: '当月支出饼图'
-    },
-    tooltip: {
-      formatter: function() {
-        return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
-      }
-    },
-    plotOptions: {
-      pie: {
-        allowPointSelect: true,
-        cursor: 'pointer',
-        dataLabels: {
-          enabled: true,
-          color: '#000000',
-          connectorColor: '#000000',
-          formatter: function() {
-            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+    month_chart_option = {
+      chart: {
+        backgroundColor: "#F2F2F2",
+        renderTo: 'month_zhichu_container',
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false
+      },
+      title: {
+        text: '当月支出饼图'
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+        }
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            connectorColor: '#000000',
+            formatter: function() {
+              return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+            }
           }
         }
-      }
-    },
-    series: [{
-      type: 'pie',
-      name: 'Browser share',
-      data: [
-        ['食物',   45.0],
-        ['租房',       26.8],
-        {
-          name: '家具',    
-          y: 12.8,
-          sliced: true,
-          selected: true
-        },
-        ['衣服',    8.5],
-        ['购物',     6.2],
-        ['其他',   0.7]
-      ]
-    }]
+      },
+      series: [{
+        type: 'pie',
+        name: 'Browser share',
+        data: []
+      }]
+    };
+
+    $.get("<%= percentage_zhangmus_path %>", {}, function(data){
+      quanbu_chart_option.series[0].data = data.quanbu
+      quanbu_chart_option.title.text = data.quanbu_title
+      month_chart_option.series[0].data = data.yue
+      month_chart_option.title.text = data.yue_title
+      new Highcharts.Chart(quanbu_chart_option);
+      new Highcharts.Chart(month_chart_option);
+    })
   });
-});
-              
+
 </script>
+
 
 

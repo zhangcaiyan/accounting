@@ -14,6 +14,20 @@ class Zhangmu < ActiveRecord::Base
   validates :fee, numericality: true
   validates_presence_of :date, :fee, :user_id, :shouzhi
 
+  def self.fenleibi(zhangmus)
+    quanbu_zhichu = quanbu_zhichu(zhangmus)
+    fenleibi = []
+    zhangmus.where(shouzhi: :zhichu).group(:fenlei_id).collect{|zhangmu| zhangmu.fenlei}.each do |fenlei|
+      fenlei_zhichu = quanbu_zhichu(zhangmus.where(fenlei_id: fenlei.id))
+      fenleibi << ["#{fenlei.name}(#{fenlei_zhichu}￥)", percent(fenlei_zhichu, quanbu_zhichu)]
+    end
+    fenleibi
+  end
+
+  def self.percent(zi, fu)
+    (zi/fu*100).round(2)
+  end
+
   def self.quanbu_zhichu(zhangmus)
     zhangmus.where(shouzhi: "zhichu").pluck(:fee).sum.round(2)
   end
