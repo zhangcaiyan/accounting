@@ -8,7 +8,7 @@
     <tr class="table_info_line">
       <td colspan="4">
         <span id="info">
-          <% if params[:search][:shouzhi_eq] == "zhichu" %>
+          <% if params[:search].try(:[], :shouzhi_eq) == "zhichu" %>
             当前为 支出分类,还需要<%= link_to '添加分类', new_fenlei_path %>吗？或者管理<%= link_to "收入分类", fenleis_path(search: {shouzhi_eq: "shouru"}) %>? 
           <% else %>
             当前为 收入分类,还需要<%= link_to '添加分类', new_fenlei_path %>吗？或者管理<%= link_to "支出分类", fenleis_path(search: {shouzhi_eq: "zhichu"}) %>? 

@@ -26,7 +26,7 @@ class FenleisController < ApplicationController
   def update
     @fenlei = fenleis.find(params[:id])
     if @fenlei.update_attributes(params[:fenlei])
-      redirect_to fenleis_path, notice: "更新分类成功"
+      redirect_to fenleis_path(search: {shouzhi_eq: @fenlei.shouzhi}), notice: "更新分类成功"
     else
       render "edit"
     end
@@ -35,7 +35,7 @@ class FenleisController < ApplicationController
   def create
     @fenlei = fenleis.new(params[:fenlei])
     if @fenlei.save
-      redirect_to fenleis_path, notice: "创建分类成功"
+      redirect_to fenleis_path(search: {shouzhi_eq: @fenlei.shouzhi}), notice: "创建分类成功"
     else
       render "new" 
     end
@@ -45,7 +45,7 @@ class FenleisController < ApplicationController
   def destroy
     @fenlei = fenleis.find(params[:id])
     @fenlei.destroy
-    redirect_to fenleis_path
+    redirect_to fenleis_path(search: {shouzhi_eq: @fenlei.shouzhi})
   end
 
   def set_default
