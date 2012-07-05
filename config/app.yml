@@ -4,9 +4,6 @@ defaults: &defaults
       name: 日常支出
 
     zhangben2:
-      name: 借入借出
-
-    zhangben3:
       name: 其他
 
   fenleis: 
@@ -20,18 +17,21 @@ defaults: &defaults
       name: 交通
       shouzhi: :zhichu
     fenlei4:
-      name: 其他
+      name: 通讯
       shouzhi: :zhichu
     fenlei5:
+      name: 其他
+      shouzhi: :zhichu
+    fenlei6:
       name: 工资
       shouzhi: :shouru
-    fenlei6:
+    fenlei7:
       name: 奖金
       shouzhi: :shouru
-    fenlei7:
+    fenlei8:
       name: 补贴/津贴
       shouzhi: :shouru
-    fenlei8: 
+    fenlei9: 
       name: 其他
       shouzhi: :shouru
     

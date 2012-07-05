@@ -6,6 +6,7 @@
     <% current_user.zhangbens.each do |zhangben| %>
       <li><%= link_to zhangben.name, new_zhangmu_path(search: {zhangben_id_eq: zhangben.id}), id: "zhangben#{zhangben.id}" %></li>
     <% end %>
+    <li><%= link_to "未分类账本", new_zhangmu_path(search: {zhangben_id_is_null: true}), id: "zhangben_weifenlei" %></li>
   </ul>
 </div>
 <div id="right_body">
@@ -104,8 +105,12 @@
 
   $(function(){
     var zhangben_id = "<%= params[:search].try(:[], :zhangben_id_eq) %>"
-
-    $("#zhangben"+zhangben_id).addClass("current")
+    var is_weifenlei = eval("<%= params[:search].try(:[], :zhangben_id_is_null) %>")
+    if(is_weifenlei){
+      $("#zhangben_weifenlei").addClass("current")
+    }else{
+      $("#zhangben"+zhangben_id).addClass("current")
+    }
 
     $(".boxy").boxy({});    
   })
