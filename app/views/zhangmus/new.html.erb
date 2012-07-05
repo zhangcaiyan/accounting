@@ -71,7 +71,7 @@
     <% @zhangmus.each do |zhangmu| %>
     <tr>
     <td class="shouzhi"><%= zhangmu.shouzhi_text %></td>
-    <td class="date"><%= l zhangmu.created_at.to_date %></td>
+    <td class="date"><%= l zhangmu.date %></td>
     <td class="fee"><%= zhangmu.fee %></td>
     <td class="title"><%= zhangmu.title %></td>
     <td class="desc"><%= zhangmu.desc %></td>
