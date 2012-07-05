@@ -34,7 +34,7 @@ class Zhangmu < ActiveRecord::Base
 
   def self.pingjun_zhichu(zhangmus)
     zhichu_zhangmus = zhangmus.where(shouzhi: "zhichu")
-    s = zhichu_zhangmus.size
+    s = zhichu_zhangmus.group(:date).length
     s > 0 ? (quanbu_zhichu(zhichu_zhangmus) / s).round(2) : 0
   end
 
@@ -44,7 +44,7 @@ class Zhangmu < ActiveRecord::Base
 
   def self.pingjun_shouru(zhangmus)
     shouru_zhangmus = zhangmus.where(shouzhi: "shouru")
-    s = shouru_zhangmus.size
+    s = shouru_zhangmus.group(:date).length
     s > 0 ? (quanbu_shouru(shouru_zhangmus) / s).round(2) : 0
   end
 
