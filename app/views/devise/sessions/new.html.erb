@@ -18,7 +18,7 @@
 
    <div>
    <%= f.button :submit, "登陆", class: "button" %>
-   <input value="试用" type="button" class="button"/>
+   <input value="试用" type="button" class="button" id="test_button"/>
    </div>
   <% end %>
 
@@ -27,6 +27,12 @@
 <script>
   $(function(){
     $(".login").addClass("current")
+
+    $("#test_button").bind("click", function(){
+      $("#user_login").attr("value", "1234")
+      $("#user_password").attr("value", "1234")
+      $("#new_user").submit()
+    })
   })
 </script>
 
