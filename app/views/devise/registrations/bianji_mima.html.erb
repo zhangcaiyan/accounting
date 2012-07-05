@@ -4,6 +4,7 @@
 
 <div id="right_body">
   <div id="edit_password">
+    <% if current_user.username != "1234" %>
     <span class="notice"><%= flash[:notice] %></span>
     <%= simple_form_for(resource, :url => update_password_path, :html => { :method => :put }) do |f| %>
       <%= f.input :current_password, as: :password, input_html: {autocomplete: "off", class: "wenben4"} %>
@@ -12,6 +13,10 @@
       <div>
         <%= f.submit "确认", class: "button" %>
       </div>
+    <% end %>
+
+    <% else %>
+    您目前登录的是测试账户，所以无法修改密码
     <% end %>
   </div>
 </div>
