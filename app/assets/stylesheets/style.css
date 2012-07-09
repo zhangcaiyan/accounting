@@ -59,6 +59,11 @@ ul {
   float: left;
   width: 20%;
   text-align: right;
+  height: 60px;
+}
+
+#header_unsinged .logo img{
+  margin-top: 10px;
 }
 
 #header_unsinged .navigation{
@@ -118,6 +123,11 @@ ul {
   float: left;
   width: 30%;
   text-align: center;
+  height: 60px;
+}
+
+#header_singed .logo img{
+  margin-top: 10px;
 }
 
 #header_singed .navigation ul li a:link, #header_singed .navigation ul li a:visited {
@@ -128,7 +138,7 @@ ul {
 
 #header_singed .other{
   float: left;
-  height: 50px;
+  height: 60px;
   color: #FFF;
   width: 30%;
 }
