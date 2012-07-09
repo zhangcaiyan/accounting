@@ -21,7 +21,7 @@ class ZhangbensController < ApplicationController
   def update
     @zhangben = zhangbens.find(params[:id])
     if @zhangben.update_attributes(params[:zhangben])
-      redirect_to @zhangben, notice: "更新账本成功"
+      redirect_to zhangbens_path, notice: "更新账本成功"
     else
       render "edit"
     end
@@ -30,7 +30,7 @@ class ZhangbensController < ApplicationController
   def create
     @zhangben = zhangbens.new(params[:zhangben])
     if @zhangben.save
-      redirect_to @zhangben, notice: "创建账本成功"
+      redirect_to zhangbens_path, notice: "创建账本成功"
     else
       render "new"
     end
