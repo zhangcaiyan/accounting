@@ -2,7 +2,7 @@
 <html>
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "" %>我的账本</title>
-    <%#<link rel="icon" href="/assets/favicon.ico" width="100">%>
+    <link rel="icon" href="<%= asset_path "favicon.ico" %>" width="100">
     <%= yield(:head) %>
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= javascript_include_tag "application" %>
