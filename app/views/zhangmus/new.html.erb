@@ -10,95 +10,102 @@
   </ul>
 </div>
 <div id="right_body">
-<div id="jizhang_info">
-  <ul>
-  <li>今日支出: <%= Zhangmu.dangtian_zhichu %></li>
-  <li>全部支出: <%= Zhangmu.quanbu_zhichu(current_user.zhangmus) %></li>
-  <li>日均支出: <%= Zhangmu.pingjun_zhichu(current_user.zhangmus)%></li>
-  <li>本月支出: <%= Zhangmu.dangyue_zhichu %></li>
-  <li>本月日均支出: <%= Zhangmu.dangyue_pingjun_zhichu %></li>
-  <li>全部收入: <%= Zhangmu.quanbu_shouru(current_user.zhangmus) %></li>
-  <li>平均收入: <%= Zhangmu.pingjun_shouru(current_user.zhangmus) %></li>
-  </ul>
-</div>
+  <div id="jizhang_info">
+    <ul>
+      <li>今日支出: <%= Zhangmu.dangtian_zhichu %></li>
+      <li>全部支出: <%= Zhangmu.quanbu_zhichu(current_user.zhangmus) %></li>
+      <li>日均支出: <%= Zhangmu.pingjun_zhichu(current_user.zhangmus)%></li>
+      <li>本月支出: <%= Zhangmu.dangyue_zhichu %></li>
+      <li>本月日均支出: <%= Zhangmu.dangyue_pingjun_zhichu %></li>
+      <li>全部收入: <%= Zhangmu.quanbu_shouru(current_user.zhangmus) %></li>
+      <li>平均收入: <%= Zhangmu.pingjun_shouru(current_user.zhangmus) %></li>
+    </ul>
+  </div>
 
-<%= render "form" %>
+  <%= render "form" %>
 
-<div id="zhangmu_list">
-<table>
-    <tbody><tr class="table_header">
-      <td colspan="7">
-        <div class="left">
-        </div>
-        <div class="center">
-          <%= will_paginate @zhangmus %>
-        </div>
-        <div class="right">
-          <ul>
-          <li>
-          <%= link_to "查询", "#search", class: "boxy", title: "查询帐目" %>
-          </li>
-          <li>
-          <a href="#" class="import_excel" title="这是超链接的标题">
-            导出excel表
-          </a>
-          </li>
-          </ul>
-        </div>
-      </td>
-    </tr>
-    <tr class="table_info_line">
-      <td colspan="7">
-        <ul>
-          <li>平均支出: <%= Zhangmu.pingjun_zhichu(@search) %></li>
-          <li>全部支出: <%= Zhangmu.quanbu_zhichu(@search) %></li>
-          <li>平均收入: <%= Zhangmu.pingjun_shouru(@search) %></li>
-          <li>全部收入: <%= Zhangmu.quanbu_shouru(@search) %></li>
-        </ul>
-      </td>
-    </tr>
-    <tr>
-      <th class="shouzhi"><%= sort_link @search, :shouzhi, "收支" %></th>
-      <th class="date"><%= sort_link @search, :date %></th>
-      <th class="fee"><%= sort_link @search, :fee %></th>
-      <th class="title"><%= sort_link @search, :title %></th>
-      <th class="desc">描述</th>
-      <th class="zhangben_fenlei">
-        <%= sort_link @search, :zhangben_id %>|<%= sort_link @search, :fenlei_id %>
-      </th>
-
-      <th class="option">操作</th>
-    </tr>
-    <% @zhangmus.each do |zhangmu| %>
-    <tr>
-    <td class="shouzhi"><%= zhangmu.shouzhi_text %></td>
-    <td class="date"><%= l zhangmu.date %></td>
-    <td class="fee"><%= zhangmu.fee %></td>
-    <td class="title"><%= zhangmu.title %></td>
-    <td class="desc"><%= zhangmu.desc %></td>
-    <td class="zhangben_fenlei"><%= zhangmu.zhangben.try(:name) %>|<%= zhangmu.fenlei.try(:name) %></td>
-    <td class="option">
-      <%= link_to "编辑", edit_zhangmu_path(zhangmu) %>&nbsp;<%= link_to "删除", zhangmu, confirm: '确定删除这条帐目吗?', method: :delete %>
-    </td>
-  </tr>
-<% end %>
-    <tr class="table_header">
-      <td colspan="7">
-        <div class="left">
-        </div>
-        <div class="center">
-          <%= will_paginate @zhangmus %>
-        </div>
-        <div class="right">
-        </div>
-      </td>
-    </tr>
-  </tbody>
-  </table>
-</div>
+  <div id="zhangmu_list">
+    <table>
+      <tbody><tr class="table_header">
+          <td colspan="7">
+            <div class="left">
+            </div>
+            <div class="center">
+              <%= will_paginate @zhangmus %>
+            </div>
+            <div class="right">
+              <ul>
+                <li>
+                <%= link_to "统计饼图", "#tongji", class: "boxy", title: "统计饼图" %>
+                </li>
+                <li>
+                <%= link_to "查询", "#search", class: "boxy", title: "查询帐目" %>
+                </li>
+                <li>
+                <a href="#" class="import_excel" title="这是超链接的标题">
+                  导出excel表
+                </a>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr class="table_info_line">
+          <td colspan="7">
+            <ul>
+              <li>平均支出: <%= Zhangmu.pingjun_zhichu(@search) %></li>
+              <li>全部支出: <%= Zhangmu.quanbu_zhichu(@search) %></li>
+              <li>平均收入: <%= Zhangmu.pingjun_shouru(@search) %></li>
+              <li>全部收入: <%= Zhangmu.quanbu_shouru(@search) %></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th class="shouzhi"><%= sort_link @search, :shouzhi, "收支" %></th>
+          <th class="date"><%= sort_link @search, :date %></th>
+          <th class="fee"><%= sort_link @search, :fee %></th>
+          <th class="title"><%= sort_link @search, :title %></th>
+          <th class="desc">描述</th>
+          <th class="zhangben_fenlei">
+            <%= sort_link @search, :zhangben_id %>|<%= sort_link @search, :fenlei_id %>
+          </th>
+          
+          <th class="option">操作</th>
+        </tr>
+        <% @zhangmus.each do |zhangmu| %>
+          <tr>
+            <td class="shouzhi"><%= zhangmu.shouzhi_text %></td>
+            <td class="date"><%= l zhangmu.date %></td>
+            <td class="fee"><%= zhangmu.fee %></td>
+            <td class="title"><%= zhangmu.title %></td>
+            <td class="desc"><%= zhangmu.desc %></td>
+            <td class="zhangben_fenlei"><%= zhangmu.zhangben.try(:name) %>|<%= zhangmu.fenlei.try(:name) %></td>
+            <td class="option">
+              <%= link_to "编辑", edit_zhangmu_path(zhangmu) %>&nbsp;<%= link_to "删除", zhangmu, confirm: '确定删除这条帐目吗?', method: :delete %>
+            </td>
+          </tr>
+        <% end %>
+        <tr class="table_header">
+          <td colspan="7">
+            <div class="left">
+            </div>
+            <div class="center">
+              <%= will_paginate @zhangmus %>
+            </div>
+            <div class="right">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <%= render "search" %>
+
+<div id="tongji" style="display:none;">
+  <div id="tongji_bingtu"></div>
+</div>
 
 
 <script type="text/javascript">
@@ -119,5 +126,55 @@
     Boxy.confirm("确定导出帐目吗", function() { });
     return false;
   })
+
+  $("a[href='#tongji']").click(function(){
+
+    var chart_option = {
+        chart: {
+          backgroundColor: "#F2F2F2",
+          renderTo: 'tongji_bingtu',
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          height: "450",
+          width: "650"
+        },
+        title: {
+          text: "统计饼图"
+        },
+        tooltip: {
+          formatter: function() {
+            return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+          }
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              color: '#000000',
+              connectorColor: '#000000',
+              formatter: function() {
+                return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+              }
+            }
+          }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Browser share',
+          data: []
+        }]
+      }
+
+    $.get("<%= percentage_zhangmus_path(search: params[:search]) %>", {}, function(data){
+      chart_option.series[0].data = data.quanbu
+      new Highcharts.Chart(chart_option)
+    })
+
+
+  })
+
 
 </script>
