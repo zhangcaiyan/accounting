@@ -4,7 +4,6 @@ class Zhangmu < ActiveRecord::Base
   symbolize :shouzhi, in: [:zhichu, :shouru], methods: true, scopes: true
 
   default_value_for :shouzhi, "zhichu"
-  default_value_for :date, Date.current
 
   belongs_to :user
   belongs_to :fenlei
