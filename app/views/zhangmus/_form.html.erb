@@ -2,7 +2,7 @@
 <%= simple_form_for @zhangmu, html: {class: "validate_form"} do |f| %>
   <%= f.input :user_id, as: "hidden", value: current_user.id %>
   <%= f.input :shouzhi, collection: Zhangmu.get_shouzhi_values, value: @zhangmu.shouzhi, input_html: {class: "validate[required] select1"}, include_blank: false, wrapper_class: "lie1" %>
-  <%= f.input :title, input_html: {class: "wenben1", value: ""} %>
+  <%= f.input :title, input_html: {class: "wenben1"} %>
   <%= f.input :date, as:"string", input_html: {onclick: "WdatePicker()", class: "validate[required, custom[date]] wenben1", value: @zhangmu.date || Date.current} %>
   <%= f.input :zhangben_id, collection: @zhangbens, include_blank: false, prompt: @zhangmu.zhangben_id, wrapper_class: "lie1", input_html: {class: "select1"} %>
   <%= f.input :fee, input_html: {class: "validate[required, custom[number]] wenben1", value: params[:action] == "new" ? "" : @zhangmu.fee} %>

@@ -13,6 +13,7 @@ class ZhangmusController < ApplicationController
   def new
     @zhangbens = current_user.zhangbens.order(:position)
     @zhangmu = current_user.zhangmus.new(params[:zhangmu])
+    @zhangmu.title = ""
     @fenleis = current_user.fenleis.where({shouzhi: @zhangmu.shouzhi}).order(:position)
     @peoples = current_user.peoples.order(:position)
     @search = current_user.zhangmus.search(params[:search])
