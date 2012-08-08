@@ -48,17 +48,17 @@ class Zhangmu < ActiveRecord::Base
   end
 
   def self.dangtian_zhichu
-    zhangmus = search({created_at_gte: Date.current, created_at_lt: Date.current + 1})
+    zhangmus = search({date_gte: Date.current, date_lt: Date.current + 1})
     quanbu_zhichu(zhangmus)
   end
 
   def self.dangyue_zhichu
-    zhangmus = search({created_at_gte: Date.current.at_beginning_of_month, created_at_lt: Date.current.at_end_of_month + 1})
+    zhangmus = search({date_gte: Date.current.at_beginning_of_month, date_lt: Date.current.at_end_of_month + 1})
     quanbu_zhichu(zhangmus)
   end
 
   def self.dangyue_pingjun_zhichu
-    zhangmus = search({created_at_gte: Date.current.at_beginning_of_month, created_at_lt: Date.current.at_end_of_month + 1})
+    zhangmus = search({date_gte: Date.current.at_beginning_of_month, date_lt: Date.current.at_end_of_month + 1})
     pingjun_zhichu(zhangmus)
   end
 end
