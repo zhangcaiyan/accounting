@@ -1,17 +1,15 @@
 <%= title "注册" %>
 
-<div id="register">
   <%= simple_form_for(@user, url: registration_path(resource_name), html: {class: "validate_form"}) do |f| %>
     <%= f.input :email, input_html: {class: "validate[required, custom[email], ajax[ajaxUserEmail]] wenben4"} %>
     <%= f.input :username, input_html: {class: "validate[required, maxSize[20], ajax[ajaxUserUsername]] wenben4"} %>
     <%= f.input :password, input_html: {class: "validate[required] wenben4"} %>
     <%= f.input :password_confirmation, input_html: {class: "validate[required, equals[user_password]] wenben4"} %>
    <div>
-     <%= f.button :submit, "注册", class: "button" %>
+     <%= f.button :submit, "注册", class: "btn-primary" %>
    </div>
  <% end %>
 
-</div>
 
 <script>
   $(function(){

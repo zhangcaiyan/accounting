@@ -2,22 +2,18 @@
 
 <%= render "partial/left_navigation" %>
 
-<div id="right_body">
-  <div id="edit_user_info">
-    <% if current_user.username != "1234" %>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "validate_form"}) do |f| %>
-      <%= f.input :email, readonly: true, input_html: {class: "wenben4"} %>
-      <%= f.input :username, input_html: {class: "validate[required, maxSize[20], ajax[ajaxUserUsername]] wenben4"} %>
-      <%= f.input :current_password, input_html: {class: "wenben4", autocomplete: "off"}, hint: "请输入当前密码来更新账户" %>
-      <div>
-        <%= f.button :submit, "更新", class: "button" %>
-      </div>
-    <% end %>
-  <% else %>
-    您目前登录的是测试账户，所以无法编辑用户信息
+<% if current_user.username != "1234" %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "validate_form"}) do |f| %>
+    <%= f.input :email, readonly: true, input_html: {class: "wenben4"} %>
+    <%= f.input :username, input_html: {class: "validate[required, maxSize[20], ajax[ajaxUserUsername]] wenben4"} %>
+    <%= f.input :current_password, input_html: {class: "wenben4", autocomplete: "off"}, hint: "请输入当前密码来更新账户" %>
+    <div>
+      <%= f.button :submit, "更新", class: "btn-primary" %>
+    </div>
   <% end %>
-  </div>
-</div>
+<% else %>
+  您目前登录的是测试账户，所以无法编辑用户信息
+<% end %>
 
 <script>
   $(function(){

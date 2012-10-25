@@ -31,8 +31,12 @@
   <% else %>
     <body id="body_unsinged">
       <%= render 'partial/un_signed_in_header' %>
-      <%= notice %>
-      <%= yield %>
+      <div class="row-fluid">
+        <div class="span8 offset4">
+          <%= notice %>
+          <%= yield %>
+        </div>
+      </div>
     </body>
   <% end %>
 </html>

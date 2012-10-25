@@ -1,17 +1,15 @@
 <%= title "忘记密码？" %>
 
-<div id="forget_password">
-  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "validate_form" }) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { class: "validate_form" }) do |f| %>
   <div>
-  <%= f.input :email, input_html: {class: "validate[required, custom[email]] wenben4"} %>
-  <div>
-  <%= f.button :submit, "发送邮件", class: "button" %>
-  </div>
- <% end %>
-</div>
+    <%= f.input :email, input_html: {class: "validate[required, custom[email]] wenben4"} %>
+    <div>
+      <%= f.button :submit, "发送邮件", class: "btn-primary" %>
+    </div>
+  <% end %>
 
-<script>
-  $(function(){
-    $(".forget").addClass("current")
-  })
-</script>
+  <script>
+    $(function(){
+      $(".forget").addClass("current")
+    })
+  </script>
