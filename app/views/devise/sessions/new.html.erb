@@ -1,6 +1,7 @@
 <%= title "登陆" %>
 
-<div id="login">
+<div class="row-fluid">
+<div class="span8 offset4">
   <%= simple_form_for(resource, as: "user", url: session_path(resource_name)) do |f| %>
   <div id="notice_error" class="alert">
    <ul>
@@ -17,11 +18,12 @@
   <% end %>
 
    <div>
-   <%= f.button :submit, "登陆", class: "button" %>
-   <input value="试用" type="button" class="button" id="test_button"/>
+   <%= f.button :submit, "登陆", class: "btn-primary" %>
+   <input value="试用" type="button" class="btn" id="test_button"/>
    </div>
   <% end %>
 
+</div>
 </div>
 
 <script>

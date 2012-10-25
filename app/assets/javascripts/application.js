@@ -4,6 +4,7 @@
 //= require_self
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require_tree .
 //= require highcharts.js
 //= requrie jquery.boxy.js

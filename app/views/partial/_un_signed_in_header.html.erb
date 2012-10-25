@@ -1,14 +1,15 @@
-<div id="header_unsinged">
-  <div class="logo">
-    <%= image_tag "logo.gif", width: 120, height: 40 %>
-  </div>
-  <div class="navigation">
-     <ul>
-       <li><%= link_to "忘记密码?", new_password_path(resource_name), class: "forget" %></li>
-       <li><%= link_to '注册', new_user_registration_path, class: "register" %></li>
-       <li><%= link_to '登陆', new_user_session_path, class: "login" %></li>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand">我的账本</a>
+      <ul class="nav pull-right">
+        <li><%= link_to "忘记密码?", new_password_path(resource_name), class: "forget" %></li>
+        <li><%= link_to '注册', new_user_registration_path, class: "register" %></li>
+        <li><%= link_to '登陆', new_user_session_path, class: "login" %></li>
     </ul>
+    </div>
   </div>
 </div>
+
 
 
