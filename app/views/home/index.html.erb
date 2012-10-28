@@ -1,19 +1,18 @@
 <% title "首页" %>
 
-<div id="tongji_bottom_body">
-  <div id="left">
-    <div id="all_zhichu_container"></div>
-  </div>
-  <div id="right">
-    <div id="month_zhichu_container"></div>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span6">
+      <div id="all_zhichu_container"></div>
+    </div>
+    <div class="span6">
+      <div id="month_zhichu_container"></div>
+    </div>
   </div>
 </div>
 
 
 <script type="text/javascript">
-  $(function(){
-    $("#shouye").addClass("current")
-  })
 
   $(document).ready(function() {
     quanbu_chart_option = {

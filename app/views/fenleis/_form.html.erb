@@ -1,7 +1,6 @@
-<%= render "/partial/left_navigation" %>
 
-<div id="right_body">
-  <div id="new_fenlei_tip">
+<div class="row-fluid">
+  <div class="span9 offset3">
     <%= simple_form_for @fenlei, html: {class: "validate_form"} do |f| %>
       <%= f.input :name, input_html: {class: "validate[required, maxSize[20]] wenben4"} %>
       <%= f.input :shouzhi, as: :radio_buttons, collection: Fenlei.get_shouzhi_values %>
@@ -14,9 +13,3 @@
 </div>
 
 
-<script>
-  $(function(){
-    $("#shezhi").addClass("current")
-    $("#fenleiguanli").addClass("current")
-  })
-</script>

@@ -6,19 +6,19 @@ Accounting::Application.routes.draw do
     end
   end
 
-  resources :fenleis do
+  resources :fenleis, except: :show do
     member do
       get "set_default"
     end
   end
 
-  resources :zhangbens do
+  resources :zhangbens, except: :show do
     member do
       get "set_default"
     end
   end
 
-  resources :peoples do
+  resources :peoples, except: :show do
     member do
       get "set_default"
     end

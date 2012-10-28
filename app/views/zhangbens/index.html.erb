@@ -1,9 +1,8 @@
 <% title "账本管理" %>
 
-<%= render "/partial/left_navigation" %>
 
-<div id="right_body">
-  <div id="manage_zhangben">
+<div class="row-fluid">
+  <div class="span9 offset3">
     <table border="0" cellspacing="0" cellpadding="0">
       <tr class="table_info_line">
         <td colspan="4">
@@ -44,8 +43,5 @@
       $.get("/zhangbens/"+zhangben_id+"/set_default")
     })
 
-    $("#shezhi").addClass("current")
-
-    $("#zhangbenguanli").addClass("current")
   })
 </script>

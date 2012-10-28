@@ -5,7 +5,7 @@ class Fenlei < ActiveRecord::Base
   belongs_to :user
 
   acts_as_list scope: [:user_id, :shouzhi]
-  validates :name, uniqueness: {scope: :user_id}, length: {in: 1..20}
+  validates :name, presence: true, uniqueness: {scope: :user_id}, length: {maximum: 20}
   validates :desc, length: {maximum: 1000}
 
   symbolize :shouzhi, in: [:zhichu, :shouru], methods: true, scopes: true

@@ -1,7 +1,6 @@
-<%= render "/partial/left_navigation" %>
 
-<div id="right_body">
-<div id="new_people_tip">
+<div class="row-fluid">
+  <div class="span9 offset3">
   <%= simple_form_for @people, url: path, html: {class: "validate_form"} do |f| %>
     <%= f.input :name, input_html: {class: "validate[required, maxSize[20]] wenben4"} %>
     <%= f.input :desc, input_html: {class: "validate[maxSize[1000]] text1"} %>
@@ -12,13 +11,4 @@
 </div>
 </div>
 
-
-<script>
-  $(function(){
-
-    $("#shezhi").addClass("current")
-
-    $("#renyuanguanli").addClass("current")
-  })
-</script>
 
