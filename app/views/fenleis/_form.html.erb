@@ -6,7 +6,7 @@
       <%= f.input :shouzhi, as: :radio_buttons, collection: Fenlei.get_shouzhi_values %>
       <%= f.input :desc, input_html: {class: "validate[maxSize[1000]] text1"} %>
       <div>
-        <%= f.button :submit, "确认", class: "button" %>
+        <%= f.button :submit, "确认", class: "btn-primary" %>
       </div>
     <% end %>
   </div>

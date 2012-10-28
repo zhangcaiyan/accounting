@@ -3,28 +3,26 @@
 
 <div class="row-fluid">
   <div class="span9 offset3">
-  <table border="0" cellspacing="0" cellpadding="0">
-    <tr class="table_info_line">
+  <table class="table">
+    <tr>
       <td colspan="4">
-        <span id="info">
           <%= link_to '添加人员', new_people_path %>
-        </span>
       </td>
     </tr>
     <tr>
-      <th class="default">默认</th>
-      <th class="name">名称</th>
-      <th class="desc">说明</th>
-      <th class="option">操作</th>
+      <th>默认</th>
+      <th>名称</th>
+      <th>说明</th>
+      <th>操作</th>
     </tr>
     <% @peoples.each do |people| %>
     <tr>
-      <td class="default">
+      <td>
         <%= radio_button_tag "people", people.id, people.position == "1" %>
       </td>
-      <td class="name"><%= link_to people.name, edit_people_path(people) %></td>
-      <td class="desc"><%= people.desc %></td>
-      <td class="option">
+      <td><%= link_to people.name, edit_people_path(people) %></td>
+      <td><%= people.desc %></td>
+      <td>
         <%= link_to "编辑", edit_people_path(people) %>
         <%= link_to "删除", people_path(people), method: :delete, confirm: "确定删除吗?" %>
       </td>

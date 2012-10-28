@@ -1,27 +1,42 @@
 <%= title '编辑账目' %>
 
-<div id="left_body">
-  <ul>
-    <li><%= link_to "全部", new_zhangmu_path, id: "zhangben" %></li>
-    <% current_user.zhangbens.each do |zhangben| %>
-      <li><%= link_to zhangben.name, new_zhangmu_path(search: {zhangben_id_eq: zhangben.id}), id: "zhangben#{zhangben.id}" %></li>
-    <% end %>
-  </ul>
-</div>
-<div id="right_body">
-<div id="jizhang_info">
-  <ul>
-  <li>今日支出: <%= Zhangmu.dangtian_zhichu %></li>
-  <li>全部支出: <%= Zhangmu.quanbu_zhichu(current_user.zhangmus) %></li>
-  <li>日均支出: <%= Zhangmu.pingjun_zhichu(current_user.zhangmus)%></li>
-  <li>本月支出: <%= Zhangmu.dangyue_zhichu %></li>
-  <li>本月日均支出: <%= Zhangmu.dangyue_pingjun_zhichu %></li>
-  <li>全部收入: <%= Zhangmu.quanbu_shouru(current_user.zhangmus) %></li>
-  <li>平均收入: <%= Zhangmu.pingjun_shouru(current_user.zhangmus) %></li>
-  </ul>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <ul class="nav nav-pills nav-stacked">
+        <li><%= link_to "全部", new_zhangmu_path, id: "zhangben" %></li>
+        <% current_user.zhangbens.each do |zhangben| %>
+          <li><%= link_to zhangben.name, new_zhangmu_path(search: {zhangben_id_eq: zhangben.id}), id: "zhangben#{zhangben.id}" %></li>
+        <% end %>
+        <li><%= link_to "未分类账本", new_zhangmu_path(search: {zhangben_id_is_null: true}), id: "zhangben_weifenlei" %></li>
+      </ul>
+    </div>
+    <div class="span10">
+      <ul>
+        <li>今日支出: <%= Zhangmu.dangtian_zhichu %></li>
+        <li>全部支出: <%= Zhangmu.quanbu_zhichu(current_user.zhangmus) %></li>
+        <li>日均支出: <%= Zhangmu.pingjun_zhichu(current_user.zhangmus)%></li>
+        <li>本月支出: <%= Zhangmu.dangyue_zhichu %></li>
+        <li>本月日均支出: <%= Zhangmu.dangyue_pingjun_zhichu %></li>
+        <li>全部收入: <%= Zhangmu.quanbu_shouru(current_user.zhangmus) %></li>
+        <li>平均收入: <%= Zhangmu.pingjun_shouru(current_user.zhangmus) %></li>
+      </ul>
+
+      <%= render "form" %>
+    </div>
+  </div>
 </div>
 
-<%= render "form" %>
-</div>
-
+<script>
+  $(function(){
+    var zhangben_id = "<%= @zhangmu.zhangben_id %>"
+    var is_weifenlei = eval("<%= @zhangmu.fenlei_id.nil? %>")
+    if(is_weifenlei){
+      $("#zhangben_weifenlei").parents("li").addClass("active")
+    }else{
+      $("#zhangben"+zhangben_id).parents("li").addClass("active")
+    }
+  
+  })
+</script>
 

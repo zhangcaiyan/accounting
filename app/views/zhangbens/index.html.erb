@@ -3,30 +3,28 @@
 
 <div class="row-fluid">
   <div class="span9 offset3">
-    <table border="0" cellspacing="0" cellpadding="0">
-      <tr class="table_info_line">
+    <table class="table">
+      <tr>
         <td colspan="4">
-          <span id="info">
-            <%= link_to "添加账本", new_zhangben_path %>
-          </span>
+          <%= link_to "添加账本", new_zhangben_path %>
         </td>
       </tr>
       <tr>
-        <th class="default">默认</th>
-        <th class="name">名称</th>
-        <th class="desc">说明</th>
-        <th class="option">操作</th>
+        <th>默认</th>
+        <th>名称</th>
+        <th>说明</th>
+        <th>操作</th>
       </tr>
       <% @zhangbens.each do |zhangben| %>
         <tr>
-          <td class="default">
+          <td>
             <%= radio_button_tag "zhangben", zhangben.id, zhangben.position == "1" %>
           </td>
-          <td class="name">
+          <td>
             <%= link_to zhangben.name, edit_zhangben_path(zhangben) %>
           </td>
-          <td class="desc"><%= truncate zhangben.desc, length: 30 %></td>
-          <td class="option">
+          <td><%= truncate zhangben.desc, length: 30 %></td>
+          <td>
             <%= link_to "编辑", edit_zhangben_path(zhangben) %> <%= link_to "删除", zhangben, method: :delete, confirm: "确认删除吗" %>
           </td>
         </tr>
