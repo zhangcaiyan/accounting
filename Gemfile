@@ -20,7 +20,6 @@ gem "default_value_for"
 gem 'simple_form', '~> 2.0.0rc'
 gem "faker"
 gem 'acts_as_list'
-gem "twitter-bootstrap-rails"
 
                                        
 group :development, :test do
@@ -28,6 +27,7 @@ group :development, :test do
 end
 
 group :assets do
+  gem "twitter-bootstrap-rails", git: 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
