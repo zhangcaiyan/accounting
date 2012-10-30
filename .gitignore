@@ -16,3 +16,4 @@ pkg
 doc/
 public/assets/*
 .sass-cache/
+.rvmrc

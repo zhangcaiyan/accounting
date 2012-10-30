@@ -23,7 +23,7 @@ gem 'acts_as_list'
 
                                        
 group :development, :test do
-  gem 'ruby-debug19', :require => "ruby-debug"
+  gem 'pry'
 end
 
 group :assets do
