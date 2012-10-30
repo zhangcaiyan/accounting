@@ -42,7 +42,8 @@ SimpleForm.setup do |config|
     ## Inputs
     b.use :label_input
     b.use :hint,  :tag => :span, :class => :hint
-    b.use :error, :tag => :span, :class => :error
+    #b.use :error, :tag => :span, :class => :error
+    b.use :error, :tag => :span, :class => :alert
   end
 
   config.wrappers :no_label, :class => :input,

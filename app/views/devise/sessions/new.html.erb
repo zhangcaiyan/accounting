@@ -2,13 +2,11 @@
 
 
 <%= simple_form_for(resource, as: "user", url: session_path(resource_name)) do |f| %>
-  <div id="notice_error" class="alert">
-    <ul>
-      <li><%= alert %></li>
-    </ul>
+  <div class="alert">
+    <b><%= alert %></b>
   </div>
-  <%= f.input :login, input_html: {class: "wenben1"} %>
-  <%= f.input :password, input_html: {class: "wenben1"} %>
+  <%= f.input :login %>
+  <%= f.input :password %>
   <% if devise_mapping.rememberable? -%>
     <%= f.input :remember_me, as: :boolean %>
   <% end %>
@@ -24,7 +22,6 @@
 
 <script>
   $(function(){
-    $(".login").addClass("current")
 
     $("#test_button").bind("click", function(){
       $("#user_login").attr("value", "1234")
