@@ -13,7 +13,7 @@
     </div>
     <div class="span10">
 
-        <ul>
+        <ul class="zhangmu_info">
           <li>今日支出: <%= Zhangmu.dangtian_zhichu %></li>
           <li>全部支出: <%= Zhangmu.quanbu_zhichu(current_user.zhangmus) %></li>
           <li>日均支出: <%= Zhangmu.pingjun_zhichu(current_user.zhangmus)%></li>
@@ -26,15 +26,11 @@
       <%= render "form" %>
 
       <div>
-        <table class="table">
-          <tbody><tr>
+        <table class="zhangmu_table table">
+          <tbody>
+            <tr>
               <td colspan="7">
                 <div class="left">
-                </div>
-                <div class="center">
-                  <%= will_paginate @zhangmus %>
-                </div>
-                <div class="right">
                   <ul>
                     <li>
                     <%= link_to "统计饼图", "#tongji", class: "boxy", title: "统计饼图" %>
@@ -47,13 +43,19 @@
                       导出excel表
                     </a>
                     </li>
-                  </ul>
+                  </ul>                  
+                </div>
+                <div class="center">
+                  <%= will_paginate @zhangmus %>
+                </div>
+                <div class="right">
+
                 </div>
               </td>
             </tr>
             <tr>
               <td colspan="7">
-                <ul>
+                <ul class="table_zhangmu_info">
                   <li>平均支出: <%= Zhangmu.pingjun_zhichu(@search) %></li>
                   <li>全部支出: <%= Zhangmu.quanbu_zhichu(@search) %></li>
                   <li>平均收入: <%= Zhangmu.pingjun_shouru(@search) %></li>

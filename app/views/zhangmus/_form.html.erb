@@ -1,4 +1,4 @@
-<%= simple_form_for @zhangmu, html: {class: "validate_form form-horizontal"} do |f| %>
+<%= simple_form_for @zhangmu, html: {class: "validate_form form-horizontal zhangmu_form"} do |f| %>
   <%= f.input :user_id, as: "hidden", value: current_user.id %>
   <%= f.input :shouzhi, collection: Zhangmu.get_shouzhi_values, value: @zhangmu.shouzhi, include_blank: false %>
   <%= f.input :title %>

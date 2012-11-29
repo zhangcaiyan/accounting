@@ -1,6 +1,10 @@
 @charset "utf-8";
 
 
+ul{
+  margin: 0px;
+}
+
 ul li{
   list-style: none;
 }
@@ -13,4 +17,62 @@ ul li{
 
 #unsigned_navbar{
   margin-bottom: 100px;
+}
+
+.zhangmu_form {
+  width: 980px;
+  height: 250px;
+}
+
+.zhangmu_form .input{
+  float: left;
+  margin-right: 20px;
+  margin-top: 10px;
+}
+
+.zhangmu_form .btn{
+  float: left;
+  margin-top: 40px;
+}
+
+ul.zhangmu_info{
+  height: 30px;
+}
+
+ul.zhangmu_info li{
+  float: left;
+  margin-right: 20px;
+}
+
+ul.table_zhangmu_info li{
+  float: left;
+  margin-right: 20px;
+}
+
+.zhangmu_table .left{
+  float: left;
+  width: 30%;
+  height: 40px;
+  display: block;
+}
+
+.zhangmu_table .center{
+  float: left;
+  width: 40%;
+  height: 40px;
+  display: block;
+}
+
+.zhangmu_table .left{
+  float: left;
+  height: 40px;
+  display: block;
+}
+
+.zhangmu_table .left ul li{
+  line-height: 40px;
+}
+.zhangmu_table .left ul li{
+  float: left;
+  margin-right: 20px;
 }
