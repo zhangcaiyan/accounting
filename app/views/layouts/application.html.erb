@@ -25,7 +25,6 @@
   <% if user_signed_in? %>
     <body id="body_singed">
       <%= render 'partial/signed_in_header' %>
-      <%= notice %>
       <%= yield %>
     </body>
   <% else %>
@@ -33,7 +32,6 @@
       <%= render 'partial/un_signed_in_header' %>
       <div class="row-fluid">
         <div class="span8 offset4">
-          <%= notice %>
           <%= yield %>
         </div>
       </div>
