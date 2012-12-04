@@ -14,11 +14,7 @@ module ZhangmusHelper
   protected
 
   def current_page?(url)
-    if url == request.fullpath
-      true
-    else
-      false
-    end
+    url == request.fullpath
   end
 
 end
