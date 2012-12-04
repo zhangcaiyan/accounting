@@ -3,8 +3,8 @@
     <div class="container">
       <%= link_to '我的账本', home_path, class: "brand" %>
       <ul class="nav pull-left">
-        <li><%= link_to "首页", home_path, id: "shouye" %></li>
-        <li><%= link_to "记帐", new_zhangmu_path, id: "jizhang" %></li>
+        <%= current_link "首页", home_path, id: "shouye" %>
+        <li><%= current_link "记帐", new_zhangmu_path, id: "jizhang" %></li>
         <li class="dropdown">
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
           设置<b class="caret"></b>

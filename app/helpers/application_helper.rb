@@ -28,6 +28,15 @@ module ApplicationHelper
     end
   end
 
+  def current_link(name, url, options={})
+
+    options[:href] = url
+    content_tag :li, class: current_page?(url) ? "active" : "" do
+      content_tag(:a, name, options)
+    end
+
+  end
+
 
 
 end
