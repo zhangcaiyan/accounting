@@ -3,9 +3,9 @@
     <div class="container">
       <a class="brand">我的账本</a>
       <ul class="nav pull-right">
-        <li><%= link_to "忘记密码?", new_password_path(resource_name), class: "forget" %></li>
-        <li><%= link_to '注册', new_user_registration_path, class: "register" %></li>
-        <li><%= link_to '登陆', new_user_session_path, class: "login" %></li>
+        <%= current_link "忘记密码?", new_password_path(resource_name), class: "forget" %>
+        <%= current_link '注册', new_user_registration_path, class: "register" %>
+        <%= current_link '登陆', new_user_session_path, class: "login" %>
     </ul>
     </div>
   </div>

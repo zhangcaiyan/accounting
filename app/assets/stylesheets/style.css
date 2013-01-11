@@ -9,6 +9,10 @@ ul li{
   list-style: none;
 }
 
+.navbar-inner a.active{
+  color: #FFFFFF;
+}
+
 .navbar .navbar-inner .container{
   margin-left: auto;
   margin-right: auto;
